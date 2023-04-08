@@ -23,7 +23,7 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public USERR getOneUser(Long IdUser) {
+    public USERR getOneUserByID(Long IdUser) {
         return userRepository.findById(IdUser).get();
     }
 
