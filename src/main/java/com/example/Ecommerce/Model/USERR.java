@@ -2,10 +2,7 @@ package com.example.Ecommerce.Model;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Data
@@ -21,4 +18,7 @@ public class USERR {
     private String PhoneUSer;
     private LocalDate created_atUser;
     private LocalDate modified_atUser;
+
+    @OneToOne(mappedBy = "userr",cascade = CascadeType.ALL)
+    private USER_ADRESSE userAdresse;
 }
