@@ -5,7 +5,7 @@ import com.example.Ecommerce.Model.USERR;
 import java.util.List;
 
 public interface IUserService {
-    USERR createUser(USERR userr);
+    USERR create(USERR userr);
     List<USERR> getAllUer();
     USERR getOneUserByID(Long IdUser);
     USERR updateUser(Long IdUser,USERR userr);

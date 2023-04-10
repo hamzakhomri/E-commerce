@@ -1,6 +1,7 @@
 package com.example.Ecommerce.Controller;
 
 import com.example.Ecommerce.Model.USERR;
+import com.example.Ecommerce.Service.User.IUserService;
 import com.example.Ecommerce.Service.User.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -8,14 +9,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/User")
+@RequestMapping("/user")
 public class UserController {
     @Autowired
-    private UserService userService;
+    private IUserService userService;
 
     @PostMapping()
     public USERR createUser(@RequestBody USERR userr){
-        return userService.createUser(userr);
+        return userService.create(userr);
     }
     @GetMapping()
     public List<USERR> getAllUser(){
