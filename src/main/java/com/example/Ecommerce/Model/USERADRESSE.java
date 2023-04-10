@@ -6,10 +6,10 @@ import javax.persistence.*;
 
 @Data
 @Entity
-public class USER_ADRESSE {
+public class USERADRESSE {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long IdUserAdresse;
+    private Long idUserAdresse;
     private String adresseline1UserAdresse;
     private String  adresseline2UserAdresse;
     private String  cityUserAdresse;
