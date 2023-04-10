@@ -1,13 +1,12 @@
-package com.example.Ecommerce.Service.User;
+package com.example.Ecommerce.Services.USer;
 
 import com.example.Ecommerce.Model.USERR;
 import com.example.Ecommerce.Repository.UserRepository;
+import com.example.Ecommerce.Services.USer.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 @Service
@@ -24,7 +23,7 @@ public class UserService implements IUserService {
 
     @Override
     public List<USERR> getAllUer() {
-        return this.userRepository.findAll();
+        return userRepository.findAll();
     }
 
     @Override
@@ -41,7 +40,7 @@ public class UserService implements IUserService {
 
     @Override
     public void deleteUser(Long IdUser) {
-        this.userRepository.deleteById(IdUser);
+        userRepository.deleteById(IdUser);
 
     }
 }
