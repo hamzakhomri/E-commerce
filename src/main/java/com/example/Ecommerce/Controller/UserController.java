@@ -1,8 +1,7 @@
 package com.example.Ecommerce.Controller;
 
 import com.example.Ecommerce.Model.USERR;
-import com.example.Ecommerce.Service.User.IUserService;
-import com.example.Ecommerce.Service.User.UserService;
+import com.example.Ecommerce.Services.USer.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,6 +29,10 @@ public class UserController {
     @PutMapping("/{IdUser}")
     public USERR updateUser(@PathVariable(name = "IdUser")Long IdUser,@RequestBody USERR userr){
         return userService.updateUser(IdUser,userr);
+    }
+    @DeleteMapping("/{IdUser}")
+    public void deteleUser(@PathVariable(name = "IdUser") Long IdUser){
+        this.userService.deleteUser(IdUser);
     }
 
 }
