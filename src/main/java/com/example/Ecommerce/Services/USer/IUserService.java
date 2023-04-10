@@ -1,13 +1,13 @@
 package com.example.Ecommerce.Services.USer;
 
-import com.example.Ecommerce.Model.USERR;
+import com.example.Ecommerce.Model.Userr;
 
 import java.util.List;
 
 public interface IUserService {
-    USERR create(USERR userr);
-    List<USERR> getAllUer();
-    USERR getOneUserByID(Long IdUser);
-    USERR updateUser(Long IdUser,USERR userr);
+    Userr create(Userr userr);
+    List<Userr> getAllUer();
+    Userr getOneUserByID(Long IdUser);
+    Userr updateUser(Long IdUser, Userr userr);
     void deleteUser(Long IdUser);
 }

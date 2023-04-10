@@ -1,28 +1,22 @@
 package com.example.Ecommerce.Controller;
 
-import com.example.Ecommerce.Model.USERADRESSE;
-import com.example.Ecommerce.Services.UserAdresse.IUserAdresseService;
+import com.example.Ecommerce.Model.Useradresse;
+import com.example.Ecommerce.Services.UserAdresse.IUserAdresse;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/useradresse")
 public class UserAdresseController {
-    private IUserAdresseService iUserAdresseService;
-    @GetMapping()
-    public List<USERADRESSE> getAllUSerAdresse(){
-        return iUserAdresseService.getAllUserAdresse();
-    }
+     @Autowired
+    IUserAdresse iUserAdresse;
+     @PostMapping()
+    public Useradresse save(@RequestBody Useradresse useradresse){
+         return iUserAdresse.create(useradresse);
+     }
+     @GetMapping("/{idUserAdresse}")
+    public Useradresse GetOneById(@PathVariable(name = "idUserAdresse")Long idUserAdresse){
+         return iUserAdresse.getOneByID(idUserAdresse);
 
-    @GetMapping("/{idUserAdresse}")
-    public USERADRESSE getUserAdressebyId(@RequestParam("IdUserAdresse")Long idUserAdresse){
-        return iUserAdresseService.getOneUserAdresseById(idUserAdresse);
-    }
-
-    @DeleteMapping("deleteuserdetail/{idUserAdresse}")
-    public void DeleteUserDetail(@PathVariable("IdUserAdresse")Long idUserAdresse){
-        iUserAdresseService.DeletUseradresse(idUserAdresse);
-    }
-
+     }
 }

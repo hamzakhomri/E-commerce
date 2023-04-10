@@ -1,8 +1,7 @@
 package com.example.Ecommerce.Services.USer;
 
-import com.example.Ecommerce.Model.USERR;
+import com.example.Ecommerce.Model.Userr;
 import com.example.Ecommerce.Repository.UserRepository;
-import com.example.Ecommerce.Services.USer.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,24 +14,24 @@ public class UserService implements IUserService {
     UserRepository userRepository;
 
     @Override
-    public USERR create(USERR userr) {
+    public Userr create(Userr userr) {
         userr.setCreated_atUser(LocalDate.now());
         userr.setModified_atUser(LocalDate.now());
         return this.userRepository.save(userr);
     }
 
     @Override
-    public List<USERR> getAllUer() {
+    public List<Userr> getAllUer() {
         return userRepository.findAll();
     }
 
     @Override
-    public USERR getOneUserByID(Long IdUser) {
+    public Userr getOneUserByID(Long IdUser) {
         return this.userRepository.findById(IdUser).get();
     }
 
     @Override
-    public USERR updateUser(Long IdUser, USERR userr) {
+    public Userr updateUser(Long IdUser, Userr userr) {
         userr.setIdUser(IdUser);
         userRepository.save(userr);
         return userRepository.save(userr);
