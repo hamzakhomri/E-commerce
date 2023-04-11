@@ -9,13 +9,20 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class UserAdresse implements IUserAdresse{
+public class UserAdresseService implements IUserAdresseService {
     @Autowired
     UserAdresseRepository userAdresseRepository;
     @Override
     public Useradresse create(Useradresse useradresse){
         return userAdresseRepository.save(useradresse);
     }
+    @Override
+    public Useradresse assign(Long idUser, Useradresse useradresse) {
+        useradresse.setUserr(new Userr(idUser));
+        return userAdresseRepository.save(useradresse);
+    }
+
+
 
     @Override
     public Useradresse getOneByID(Long idUserAdresse) {
@@ -27,11 +34,9 @@ public class UserAdresse implements IUserAdresse{
         return userAdresseRepository.findAll();
     }
 
-    @Override
-    public Useradresse assign(Long idUser, Useradresse useradresse) {
-       useradresse.setUserr(new Userr(idUser));
-        return userAdresseRepository.save(useradresse);
-    }
+    public List<Useradresse> getUseradresseByIdUser(Long idUser){
+        return userAdresseRepository.find_UserAdresse_B_yUserr_IdUser(idUser);
 
+    }
 
 }

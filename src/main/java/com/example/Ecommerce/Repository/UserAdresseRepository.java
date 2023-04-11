@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface UserAdresseRepository extends JpaRepository<Useradresse,Long> {
-    List<Useradresse> findByUserr_IdUser(Long idUser);
+    List<Useradresse> find_UserAdresse_B_yUserr_IdUser(Long idUser);
 
 }

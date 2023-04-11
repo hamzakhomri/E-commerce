@@ -4,7 +4,7 @@ import com.example.Ecommerce.Model.Useradresse;
 
 import java.util.List;
 
-public interface IUserAdresse {
+public interface IUserAdresseService {
     Useradresse create(Useradresse useradresse);
     Useradresse getOneByID(Long idUserAdresse);
     List<Useradresse> getlAll();
