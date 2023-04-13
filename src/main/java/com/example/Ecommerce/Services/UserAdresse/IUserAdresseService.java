@@ -8,5 +8,4 @@ public interface IUserAdresseService {
     Useradresse create(Useradresse useradresse);
     Useradresse getOneByID(Long idUserAdresse);
     List<Useradresse> getlAll();
-    Useradresse assign (Long idUser,Useradresse useradresse);
 }
