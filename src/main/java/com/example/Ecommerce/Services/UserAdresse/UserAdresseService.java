@@ -1,7 +1,6 @@
 package com.example.Ecommerce.Services.UserAdresse;
 
 import com.example.Ecommerce.Model.Useradresse;
-import com.example.Ecommerce.Model.Userr;
 import com.example.Ecommerce.Repository.UserAdresseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,13 +15,6 @@ public class UserAdresseService implements IUserAdresseService {
     public Useradresse create(Useradresse useradresse){
         return userAdresseRepository.save(useradresse);
     }
-    @Override
-    public Useradresse assign(Long idUser, Useradresse useradresse) {
-        useradresse.setUserr(new Userr(idUser));
-        return userAdresseRepository.save(useradresse);
-    }
-
-
 
     @Override
     public Useradresse getOneByID(Long idUserAdresse) {
@@ -34,9 +26,5 @@ public class UserAdresseService implements IUserAdresseService {
         return userAdresseRepository.findAll();
     }
 
-    public List<Useradresse> getUseradresseByIdUser(Long idUser){
-        return userAdresseRepository.find_UserAdresse_B_yUserr_IdUser(idUser);
-
-    }
 
 }
