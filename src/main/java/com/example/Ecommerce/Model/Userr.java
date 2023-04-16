@@ -14,6 +14,15 @@ public class Userr {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idUser;
+
+    public void setNameUser(String nameUser) {
+        this.nameUser = nameUser;
+    }
+
+    public String getNameUser() {
+        return nameUser;
+    }
+
     private String nameUser;
     //private String passwordUSer;
     //private String firstNameUser;

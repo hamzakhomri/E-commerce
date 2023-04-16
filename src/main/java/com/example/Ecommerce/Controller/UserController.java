@@ -14,15 +14,15 @@ public class UserController {
     @Autowired
     private IUserService userService;
 
-    @GetMapping("/{IdUser}")//dont'Done
-
+    @GetMapping("/{IdUser}")//'Done
     public Userr GetUserByID(@PathVariable("IdUser")Long IdUser){
         return userService.getOneUserByID(IdUser);
     }
 
-    @PutMapping("/{IdUser}")//Done
-    public Userr updateUser(@PathVariable(name = "IdUser")Long IdUser, @RequestBody Userr userr){
+    @PutMapping("/{IdUser}")//Don't Done
+    public Userr updateUser(@PathVariable Long IdUser, @RequestBody Userr userr){
         return userService.update(IdUser,userr);
+
     }
 
     @PostMapping()//Done
