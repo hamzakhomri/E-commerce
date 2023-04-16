@@ -27,7 +27,6 @@ public class Userr {
     @OneToOne(mappedBy = "userr",cascade = CascadeType.ALL)
     private Useradresse userAdresse;
 
-    public Userr(Long idUser) {
-        this.idUser=idUser;
-    }
+    public Userr(Long idUser){this.idUser=idUser;}
+
 }

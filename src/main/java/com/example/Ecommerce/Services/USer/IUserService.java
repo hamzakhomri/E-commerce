@@ -8,6 +8,6 @@ public interface IUserService {
     Userr create(Userr userr);
     List<Userr> getAllUer();
     Userr getOneUserByID(Long IdUser);
-    Userr updateUser(Long IdUser, Userr userr);
+    Userr update(Long IdUser, Userr userr);
     void deleteUser(Long IdUser);
 }
