@@ -19,7 +19,7 @@ public class UserController {
         return userService.getOneUserByID(IdUser);
     }
 
-    @PutMapping("/{IdUser}")//Don't Done
+    @PutMapping("/{IdUser}")//Done
     public Userr updateUser(@PathVariable Long IdUser, @RequestBody Userr userr){
         return userService.update(IdUser,userr);
 
