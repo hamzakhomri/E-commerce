@@ -15,14 +15,6 @@ public class Userr {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idUser;
 
-    public void setNameUser(String nameUser) {
-        this.nameUser = nameUser;
-    }
-
-    public String getNameUser() {
-        return nameUser;
-    }
-
     private String nameUser;
     //private String passwordUSer;
     //private String firstNameUser;
@@ -36,6 +28,16 @@ public class Userr {
     @OneToOne(mappedBy = "userr",cascade = CascadeType.ALL)
     private Useradresse userAdresse;
 
-    public Userr(Long idUser){this.idUser=idUser;}
 
+    public void setNameUser(String nameUser) {
+        this.nameUser = nameUser;
+    }
+
+    public String getNameUser() {
+        return nameUser;
+    }
+
+    public Userr(Long idUser) {
+        this.idUser = idUser;
+    }
 }
