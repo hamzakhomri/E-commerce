@@ -25,7 +25,7 @@ public class Userr {
     @CreatedDate()
     private LocalDate created_atUser;
 
-    @OneToOne(mappedBy = "userr",cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "userr",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private Useradresse userAdresse;
 
 

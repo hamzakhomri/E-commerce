@@ -1,5 +1,6 @@
 package com.example.Ecommerce.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -19,6 +20,7 @@ public class Useradresse {
 
     @OneToOne
     @JoinColumn(name = "user_id")
+    @JsonIgnore
     private Userr userr;
 
 
