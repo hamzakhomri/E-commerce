@@ -6,6 +6,7 @@ import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -21,9 +22,9 @@ public class Userr {
     //private String lastNameUser;
     //private String phoneUSer;
 
-    private LocalDate modified_atUser;
+    private LocalDateTime modified_atUser;
     @CreatedDate()
-    private LocalDate created_atUser;
+    private LocalDateTime created_atUser;
 
     @OneToOne(mappedBy = "userr",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private Useradresse userAdresse;
