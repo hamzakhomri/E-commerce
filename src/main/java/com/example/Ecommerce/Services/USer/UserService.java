@@ -36,9 +36,7 @@ public class UserService implements IUserService {
 
     @Override
     public Userr update(Long IdUser, Userr userr) {
-        //userr.setIdUser(IdUser);
-        //userAdresseRepository.save(userr.getUserAdresse());
-        //return userRepository.save(userr);
+
         Userr existUser = userRepository.findById(IdUser).orElse(null);
         if (existUser!=null){
             existUser.setNameUser(userr.getNameUser());
