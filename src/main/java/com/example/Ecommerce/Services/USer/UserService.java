@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -18,8 +19,8 @@ public class UserService implements IUserService {
 
     @Override
     public Userr create(Userr userr) {
-        userr.setCreated_atUser(LocalDate.now());
-        userr.setModified_atUser(LocalDate.now());
+        userr.setCreated_atUser(LocalDateTime.now());
+        userr.setModified_atUser(LocalDateTime.now());
         return this.userRepository.save(userr);
     }
 
@@ -30,7 +31,7 @@ public class UserService implements IUserService {
 
     @Override
     public Userr getOneUserByID(Long IdUser) {//dont'Done
-        return userRepository.findById(IdUser).get();
+        return userRepository.findById(IdUser).orElse(null);
     }
 
     @Override
@@ -40,8 +41,9 @@ public class UserService implements IUserService {
         //return userRepository.save(userr);
         Userr existUser = userRepository.findById(IdUser).orElse(null);
         if (existUser!=null){
-            existUser.setNameUser((userr.getNameUser()));
-            return userRepository.save(existUser);
+            existUser.setNameUser(userr.getNameUser());
+            userr.setModified_atUser(LocalDateTime.now());
+            return userRepository.save(userr);
         }else {
             return null;
         }
