@@ -6,9 +6,9 @@ import com.example.Ecommerce.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService implements IUserService {
@@ -29,10 +29,16 @@ public class UserService implements IUserService {
         return userRepository.findAll();
     }
 
+
+
     @Override
-    public Userr getOneUserByID(Long IdUser) {//dont'Done
+    public Userr getOneUserByID(Long IdUser) {//dont
         return userRepository.findById(IdUser).orElse(null);
     }
+
+
+
+
 
     @Override
     public Userr update(Long IdUser, Userr userr) {
