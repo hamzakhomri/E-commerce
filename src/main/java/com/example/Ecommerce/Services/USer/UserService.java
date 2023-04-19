@@ -17,6 +17,8 @@ public class UserService implements IUserService {
     @Autowired
     UserAdresseRepository userAdresseRepository;
 
+
+
     @Override
     public Userr create(Userr userr) {
         userr.setCreated_atUser(LocalDateTime.now());
@@ -36,8 +38,10 @@ public class UserService implements IUserService {
         return userRepository.findById(IdUser).orElse(null);
     }
 
-
-
+    @Override
+    public Userr getOneBynameUser(String nameUser) {
+        return userRepository.findByNameUserStartsWith(nameUser).get();
+    }
 
 
     @Override
