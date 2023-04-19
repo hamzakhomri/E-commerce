@@ -14,7 +14,10 @@ public class UserController {
     @Autowired
     private IUserService userService;
 
-
+    @GetMapping("/filter")
+    public Userr getUserBynameUser(@RequestParam("nameUser") String nameUser){
+        return userService.getOneBynameUser(nameUser);
+    }
 
     @GetMapping("/{IdUser}")//'Done
     public Userr GetUserByID(@PathVariable("IdUser")Long IdUser){
