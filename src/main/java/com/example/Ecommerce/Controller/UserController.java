@@ -3,6 +3,7 @@ package com.example.Ecommerce.Controller;
 import com.example.Ecommerce.Model.Userr;
 import com.example.Ecommerce.Services.USer.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,8 +27,13 @@ public class UserController {
 
     @PutMapping("/{IdUser}")//Done
     public Userr updateUser(@PathVariable Long IdUser, @RequestBody Userr userr){
-        return userService.update(IdUser,userr);
-
+        Userr updateUser =userService.update(IdUser,userr);
+        if (updateUser!=null){
+            return ResponseEntity.ok(updateUser).getBody();
+        }
+        else {
+            return null;
+        }
     }
 
     @PostMapping()//Done
