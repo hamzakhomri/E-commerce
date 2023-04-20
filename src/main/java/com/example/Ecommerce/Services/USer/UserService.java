@@ -46,21 +46,19 @@ public class UserService implements IUserService {
 
     @Override
     public Userr update(Long IdUser, Userr userr) {
-
         Userr existUser = userRepository.findById(IdUser).orElse(null);
         if (existUser!=null){
-            existUser.setNameUser(userr.getNameUser());
             userr.setModified_atUser(LocalDateTime.now());
+            userr.setNameUser(userr.getNameUser());
             return userRepository.save(userr);
         }else {
             return null;
         }
-
     }
 
     @Override
     public void deleteUser(Long IdUser) {
-        userRepository.deleteById(IdUser);
+         userRepository.deleteById(IdUser);
 
     }
 }
