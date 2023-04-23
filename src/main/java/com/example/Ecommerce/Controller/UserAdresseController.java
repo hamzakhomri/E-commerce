@@ -34,6 +34,7 @@ public class UserAdresseController {
 
      @PostMapping("user/{idUser}")
     public Useradresse assignToUser(@PathVariable Long idUser, @RequestBody Useradresse useradresse ){
-      return iUserAdresseService.assign(idUser,useradresse);
+       useradresse.setIdUserAdresse(idUser);
+         return iUserAdresseService.assign(idUser,useradresse);
      }
 }
