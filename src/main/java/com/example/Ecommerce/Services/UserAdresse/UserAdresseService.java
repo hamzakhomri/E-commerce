@@ -12,6 +12,12 @@ import java.util.List;
 public class UserAdresseService implements IUserAdresseService {
     @Autowired
     UserAdresseRepository userAdresseRepository;
+
+
+    public boolean IfExistUser(Long idUser) {
+        return userAdresseRepository.existsByUserr_IdUser(idUser);
+    }
+
     @Override
     public Useradresse create(Useradresse useradresse){
         return userAdresseRepository.save(useradresse);
@@ -29,8 +35,14 @@ public class UserAdresseService implements IUserAdresseService {
 
     @Override
     public Useradresse assign(Long idUser, Useradresse useradresse) {
-        useradresse.setUserr(new Userr(idUser));
-        return userAdresseRepository.save(useradresse);
+        if (IfExistUser(idUser)==false){
+            useradresse.setUserr(new Userr(idUser));
+            return userAdresseRepository.save(useradresse);
+        }
+        else {
+            return userAdresseRepository.findById(idUser).get();
+        }
+
     }
 
 
