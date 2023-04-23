@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface UserAdresseRepository extends JpaRepository<Useradresse,Long> {
-
+    boolean existsByUserr_IdUser(Long idUser);
 }
