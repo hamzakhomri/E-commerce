@@ -7,7 +7,9 @@ import com.example.Ecommerce.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserAdresseService implements IUserAdresseService {
@@ -19,6 +21,9 @@ public class UserAdresseService implements IUserAdresseService {
     public boolean IfExistUser(Long idUser) {
         return userAdresseRepository.existsByUserr_IdUser(idUser);
     }
+
+
+
 
 
 
@@ -39,7 +44,7 @@ public class UserAdresseService implements IUserAdresseService {
 
     @Override
     public Useradresse assign(Long idUser, Useradresse useradresse) {
-        if (IfExistUser(idUser)==false){
+        if (!IfExistUser(idUser)){
             useradresse.setUserr(new Userr(idUser));
             return userAdresseRepository.save(useradresse);
         }
@@ -47,14 +52,17 @@ public class UserAdresseService implements IUserAdresseService {
             return userAdresseRepository.findById(idUser).get();
         }
     }
-    @Override
-    public Useradresse update(Long idUserAdresse,Useradresse useradresse) {
-        Useradresse existUserAdresse = userAdresseRepository.findById(idUserAdresse).orElse(null);
-        if (existUserAdresse!=null){
-            return userAdresseRepository.save(useradresse);
+    public Useradresse update(Long idUser, Useradresse userAdresse) {
+        if (!IfExistUser(idUser)){
+            userAdresse.setUserr(userAdresse.getUserr());
+
+            userAdresse.setNameUserAdresse(userAdresse.getNameUserAdresse());
+            return userAdresseRepository.save(userAdresse);
         }
         else {
-            return null;
+            return userAdresseRepository.findById(idUser).get();
         }
     }
+
+
 }
