@@ -5,7 +5,6 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
@@ -41,4 +40,5 @@ public class Userr {
     public Userr(Long idUser) {
         this.idUser = idUser;
     }
+
 }
