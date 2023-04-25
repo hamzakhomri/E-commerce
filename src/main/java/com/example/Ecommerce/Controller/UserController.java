@@ -29,12 +29,10 @@ public class UserController {
         return userService.getOneUserByID(IdUser);
     }
 
-    @PutMapping("/{IdUser}/useradresse/{idUserAdresse}")//Done
-    public Userr updateUser(@PathVariable Long IdUser, @PathVariable Long idUserAdresse, @RequestBody Userr userr,@RequestBody Useradresse useradresse)
+    @PutMapping("/{IdUser}")//Done
+    public Userr updateUser(@PathVariable Long IdUser, @RequestBody Userr userr)
     {
-        Userr updateUser =userService.update(Long IdUser Userr userr);
-        Useradresse update = userAdresseService.update(Long idUserAdresse,Useradresse useradresse)
-
+        Userr updateUser =userService.update(IdUser,userr);
         if (updateUser!=null){
             return ResponseEntity.ok(updateUser).getBody();
         }
@@ -43,7 +41,7 @@ public class UserController {
         }
     }
 
-    @PostMapping()//Done
+    @PostMapping()//Don
     public Userr createUser(@RequestBody Userr userr){
         return userService.create(userr);
     }
