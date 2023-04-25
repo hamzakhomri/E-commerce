@@ -1,5 +1,6 @@
 package com.example.Ecommerce.Services.USer;
 
+import com.example.Ecommerce.Model.Useradresse;
 import com.example.Ecommerce.Model.Userr;
 import com.example.Ecommerce.Repository.UserAdresseRepository;
 import com.example.Ecommerce.Repository.UserRepository;
@@ -8,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserService implements IUserService {
@@ -32,6 +32,10 @@ public class UserService implements IUserService {
     }
 
 
+    @Override
+    public Userr update(Long IdUser, Long idUserAdresse, Userr userr) {
+        return null;
+    }
 
     @Override
     public Userr getOneUserByID(Long IdUser) {//dont
@@ -45,12 +49,12 @@ public class UserService implements IUserService {
 
 
     @Override
-    public Userr update(Long IdUser, Userr userr) {
+    public Userr update(Long IdUser, Long idUserAdresse, Userr userr,Useradresse useradresse) {
         Userr existUser = userRepository.findById(IdUser).orElse(null);
         if (existUser!=null){
             userr.setModified_atUser(LocalDateTime.now());
             userr.setNameUser(userr.getNameUser());
-            return userRepository.save(userr);
+            return userRepository.save(userr),userAdresseRepository.save(useradresse);
         }else {
             return null;
         }
