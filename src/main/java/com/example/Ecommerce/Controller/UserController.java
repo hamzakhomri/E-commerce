@@ -1,7 +1,9 @@
 package com.example.Ecommerce.Controller;
 
+import com.example.Ecommerce.Model.Useradresse;
 import com.example.Ecommerce.Model.Userr;
 import com.example.Ecommerce.Services.USer.IUserService;
+import com.example.Ecommerce.Services.UserAdresse.IUserAdresseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +16,8 @@ import java.util.Optional;
 public class UserController {
     @Autowired
     private IUserService userService;
+    @Autowired
+    private IUserAdresseService userAdresseService;
 
     @GetMapping("/filter")
     public Userr getUserBynameUser(@RequestParam("nameUser") String nameUser){
@@ -25,9 +29,12 @@ public class UserController {
         return userService.getOneUserByID(IdUser);
     }
 
-    @PutMapping("/{IdUser}")//Done
-    public Userr updateUser(@PathVariable Long IdUser, @RequestBody Userr userr){
-        Userr updateUser =userService.update(IdUser,userr);
+    @PutMapping("/{IdUser}/useradresse/{idUserAdresse}")//Done
+    public Userr updateUser(@PathVariable Long IdUser, @PathVariable Long idUserAdresse, @RequestBody Userr userr,@RequestBody Useradresse useradresse)
+    {
+        Userr updateUser =userService.update(Long IdUser Userr userr);
+        Useradresse update = userAdresseService.update(Long idUserAdresse,Useradresse useradresse)
+
         if (updateUser!=null){
             return ResponseEntity.ok(updateUser).getBody();
         }
