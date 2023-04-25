@@ -31,12 +31,6 @@ public class UserService implements IUserService {
         return userRepository.findAll();
     }
 
-
-    @Override
-    public Userr update(Long IdUser, Long idUserAdresse, Userr userr) {
-        return null;
-    }
-
     @Override
     public Userr getOneUserByID(Long IdUser) {//dont
         return userRepository.findById(IdUser).orElse(null);
@@ -49,12 +43,12 @@ public class UserService implements IUserService {
 
 
     @Override
-    public Userr update(Long IdUser, Long idUserAdresse, Userr userr,Useradresse useradresse) {
+    public Userr update(Long IdUser, Userr userr) {
         Userr existUser = userRepository.findById(IdUser).orElse(null);
         if (existUser!=null){
             userr.setModified_atUser(LocalDateTime.now());
             userr.setNameUser(userr.getNameUser());
-            return userRepository.save(userr),userAdresseRepository.save(useradresse);
+            return userRepository.save(userr);
         }else {
             return null;
         }
