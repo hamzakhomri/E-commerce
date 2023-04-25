@@ -10,6 +10,7 @@ import javax.persistence.*;
 public class Useradresse {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long idUserAdresse;
     private String nameUserAdresse;
 
@@ -17,7 +18,13 @@ public class Useradresse {
     //private String  cityUserAdresse;
     //private Integer postalcodeUserAdresse;
     //private String countryUserAdresse;
+    public String getNameUserAdresse() {
+        return nameUserAdresse;
+    }
 
+    public void setNameUserAdresse(String nameUserAdresse) {
+        this.nameUserAdresse = nameUserAdresse;
+    }
     @OneToOne
     @JoinColumn(name = "user_id")
     @JsonIgnore
