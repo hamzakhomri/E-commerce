@@ -39,14 +39,10 @@ public class UserAdresseController {
          return iUserAdresseService.assign(idUser,useradresse);
      }
 
-     @PutMapping("/{idUserAdresse}")
-    public Useradresse update(@PathVariable Long idUserAdresse, @RequestBody Useradresse useradresse){
-         Useradresse updateUserAdresse = userAdresseService.update(idUserAdresse,useradresse);
-         if (updateUserAdresse!=null){
-             return ResponseEntity.ok(updateUserAdresse).getBody();
-         }
-         else {
-             return null;
-         }
+     @PutMapping("/user/{idUser}")
+    public Useradresse update(@PathVariable Long idUser, @RequestBody Useradresse useradresse){
+        useradresse.setIdUserAdresse(idUser);
+            return iUserAdresseService.update(idUser,useradresse);
+
      }
 }
