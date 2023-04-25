@@ -3,6 +3,7 @@ package com.example.Ecommerce.Services.UserAdresse;
 import com.example.Ecommerce.Model.Useradresse;
 import com.example.Ecommerce.Model.Userr;
 import com.example.Ecommerce.Repository.UserAdresseRepository;
+import com.example.Ecommerce.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,11 +13,14 @@ import java.util.List;
 public class UserAdresseService implements IUserAdresseService {
     @Autowired
     UserAdresseRepository userAdresseRepository;
-
+    @Autowired
+    UserRepository userRepository;
 
     public boolean IfExistUser(Long idUser) {
         return userAdresseRepository.existsByUserr_IdUser(idUser);
     }
+
+
 
     @Override
     public Useradresse create(Useradresse useradresse){
@@ -42,8 +46,15 @@ public class UserAdresseService implements IUserAdresseService {
         else {
             return userAdresseRepository.findById(idUser).get();
         }
-
     }
-
-
+    @Override
+    public Useradresse update(Long idUserAdresse,Useradresse useradresse) {
+        Useradresse existUserAdresse = userAdresseRepository.findById(idUserAdresse).orElse(null);
+        if (existUserAdresse!=null){
+            return userAdresseRepository.save(useradresse);
+        }
+        else {
+            return null;
+        }
+    }
 }
