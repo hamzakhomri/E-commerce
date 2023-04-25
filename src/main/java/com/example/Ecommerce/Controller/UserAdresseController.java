@@ -4,6 +4,7 @@ import com.example.Ecommerce.Model.Useradresse;
 import com.example.Ecommerce.Services.UserAdresse.IUserAdresseService;
 import com.example.Ecommerce.Services.UserAdresse.UserAdresseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -36,5 +37,16 @@ public class UserAdresseController {
     public Useradresse assignToUser(@PathVariable Long idUser, @RequestBody Useradresse useradresse ){
        useradresse.setIdUserAdresse(idUser);
          return iUserAdresseService.assign(idUser,useradresse);
+     }
+
+     @PutMapping("/{idUserAdresse}")
+    public Useradresse update(@PathVariable Long idUserAdresse, @RequestBody Useradresse useradresse){
+         Useradresse updateUserAdresse = userAdresseService.update(idUserAdresse,useradresse);
+         if (updateUserAdresse!=null){
+             return ResponseEntity.ok(updateUserAdresse).getBody();
+         }
+         else {
+             return null;
+         }
      }
 }
