@@ -5,4 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserAdresseRepository extends JpaRepository<Useradresse,Long> {
     boolean existsByUserr_IdUser(Long idUser);
+
+    Useradresse findByUserr_NameUserLike(String nameUser);
 }
