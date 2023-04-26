@@ -7,9 +7,7 @@ import com.example.Ecommerce.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserAdresseService implements IUserAdresseService {
@@ -23,6 +21,10 @@ public class UserAdresseService implements IUserAdresseService {
     }
 
 
+    @Override
+    public Useradresse getLikeUserName(String nameUser) {
+        return userAdresseRepository.findByUserr_NameUserLike(nameUser);
+    }
 
 
 
@@ -52,6 +54,7 @@ public class UserAdresseService implements IUserAdresseService {
             return userAdresseRepository.findById(idUser).get();
         }
     }
+
     public Useradresse update(Long idUser, Useradresse userAdresse) {
         if (!IfExistUser(idUser)){
             userAdresse.setUserr(userAdresse.getUserr());
