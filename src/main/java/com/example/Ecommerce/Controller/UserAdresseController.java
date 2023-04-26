@@ -4,7 +4,6 @@ import com.example.Ecommerce.Model.Useradresse;
 import com.example.Ecommerce.Services.UserAdresse.IUserAdresseService;
 import com.example.Ecommerce.Services.UserAdresse.UserAdresseService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,10 +16,6 @@ public class UserAdresseController {
      @Autowired
     private UserAdresseService userAdresseService;
 
-     @PostMapping()
-    public Useradresse save(@RequestBody Useradresse useradresse){
-         return iUserAdresseService.create(useradresse);
-     }
 
 
     @GetMapping()
@@ -32,6 +27,17 @@ public class UserAdresseController {
     public Useradresse GetOneById(@PathVariable(name = "idUserAdresse")Long idUserAdresse){
          return iUserAdresseService.getOneByID(idUserAdresse);
      }
+
+     @GetMapping("/user/{nameUser}")
+     public Useradresse GetLikeUsername(@PathVariable String nameUser){
+        return userAdresseService.getLikeUserName(nameUser);
+     }
+
+
+    @PostMapping()
+    public Useradresse save(@RequestBody Useradresse useradresse){
+        return iUserAdresseService.create(useradresse);
+    }
 
      @PostMapping("user/{idUser}")
     public Useradresse assignToUser(@PathVariable Long idUser, @RequestBody Useradresse useradresse ){
