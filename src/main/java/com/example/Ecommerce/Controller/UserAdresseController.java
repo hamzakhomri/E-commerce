@@ -28,9 +28,9 @@ public class UserAdresseController {
          return iUserAdresseService.getOneByID(idUserAdresse);
      }
 
-     @GetMapping("/user/{nameUser}")
+     @GetMapping("/filter")
      public Useradresse GetLikeUsername(@PathVariable String nameUser){
-        return userAdresseService.getLikeUserName(nameUser);
+        return userAdresseService.findByUserr_NameUserLike(nameUser);
      }
 
 
