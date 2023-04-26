@@ -22,8 +22,8 @@ public class UserAdresseService implements IUserAdresseService {
 
 
     @Override
-    public Useradresse getLikeUserName(String nameUser) {
-        return userAdresseRepository.findByUserr_NameUserLike(nameUser);
+    public Useradresse findByUserr_NameUserLike(String nameUser) {
+        return userAdresseRepository.findByUserr_NameUserLike(nameUser).orElse(null);
     }
 
 
