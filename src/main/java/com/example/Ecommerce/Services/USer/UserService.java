@@ -37,7 +37,7 @@ public class UserService implements IUserService {
 
     @Override
     public Userr getOneBynameUser(String nameUser) {
-        return userRepository.findByNameUserStartsWith(nameUser).get();
+        return userRepository.findByNameUserStartsWith(nameUser).orElse(null);
     }
 
 
