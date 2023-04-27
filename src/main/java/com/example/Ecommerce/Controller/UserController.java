@@ -41,6 +41,12 @@ public class UserController {
         }
     }
 
+    @PutMapping("updates/{IdUser}")
+    public ResponseEntity<?> updateUserAndAdresse(@PathVariable Long userrId, @RequestBody Userr userr, @RequestBody Useradresse useradresse) {
+        userService.update2(userrId, userr.getUserAdresse().getUserr(), useradresse.getUserr().getUserAdresse());
+        return ResponseEntity.ok().build();
+    }
+
     @PostMapping()//Don
     public Userr createUser(@RequestBody Userr userr){
         return userService.create(userr);
