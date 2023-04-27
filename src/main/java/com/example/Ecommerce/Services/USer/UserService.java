@@ -1,5 +1,6 @@
 package com.example.Ecommerce.Services.USer;
 
+import com.example.Ecommerce.Model.Useradresse;
 import com.example.Ecommerce.Model.Userr;
 import com.example.Ecommerce.Repository.UserAdresseRepository;
 import com.example.Ecommerce.Repository.UserRepository;
@@ -51,6 +52,11 @@ public class UserService implements IUserService {
         }else {
             return null;
         }
+    }
+
+    @Override
+    public Userr update2(Long IdUser, Userr userr, Useradresse useradresse) {
+        return null;
     }
 
     @Override
