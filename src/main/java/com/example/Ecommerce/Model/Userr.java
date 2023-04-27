@@ -13,17 +13,19 @@ import java.time.LocalDateTime;
 public class Userr {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idUser;
 
-    private String nameUser;
     //private String passwordUSer;
     //private String firstNameUser;
     //private String lastNameUser;
     //private String phoneUSer;
 
+
+    private Long idUser;
+    private String nameUser;
     private LocalDateTime modified_atUser;
     @CreatedDate()
     private LocalDateTime created_atUser;
+
 
     @OneToOne(mappedBy = "userr",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private Useradresse userAdresse;
@@ -40,5 +42,6 @@ public class Userr {
     public Userr(Long idUser) {
         this.idUser = idUser;
     }
+
 
 }
