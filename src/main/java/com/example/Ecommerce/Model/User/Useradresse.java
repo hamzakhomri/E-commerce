@@ -1,4 +1,4 @@
-package com.example.Ecommerce.Model;
+package com.example.Ecommerce.Model.User;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
