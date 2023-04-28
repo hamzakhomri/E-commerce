@@ -1,4 +1,4 @@
-package com.example.Ecommerce.Model;
+package com.example.Ecommerce.Model.User;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
