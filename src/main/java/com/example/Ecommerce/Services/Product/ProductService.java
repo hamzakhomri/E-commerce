@@ -6,8 +6,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
-public class ProductService {
+public class ProductService implements IProductService{
+    @Autowired
+    ProductRepository productRepository;
+
+    @Override
+    public Product createProduct(Product product){
+        product.setCreated_atUser(LocalDateTime.now());
+        product.setModified_atUser(LocalDateTime.now());
+        return productRepository.save(product);
+    }
+
 
 }
