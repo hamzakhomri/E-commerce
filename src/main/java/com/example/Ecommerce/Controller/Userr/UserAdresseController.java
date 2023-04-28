@@ -1,8 +1,8 @@
-package com.example.Ecommerce.Controller;
+package com.example.Ecommerce.Controller.Userr;
 
 import com.example.Ecommerce.Model.User.Useradresse;
-import com.example.Ecommerce.Services.UserAdresse.IUserAdresseService;
-import com.example.Ecommerce.Services.UserAdresse.UserAdresseService;
+import com.example.Ecommerce.Services.Userr.UserAdresse.IUserAdresseService;
+import com.example.Ecommerce.Services.Userr.UserAdresse.UserAdresseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
