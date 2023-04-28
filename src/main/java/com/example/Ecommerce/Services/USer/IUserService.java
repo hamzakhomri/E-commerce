@@ -1,7 +1,7 @@
 package com.example.Ecommerce.Services.USer;
 
-import com.example.Ecommerce.Model.Useradresse;
-import com.example.Ecommerce.Model.Userr;
+import com.example.Ecommerce.Model.User.Useradresse;
+import com.example.Ecommerce.Model.User.Userr;
 
 import java.util.List;
 
