@@ -9,6 +9,8 @@ import java.time.LocalDateTime;
 @Data
 @Entity
 public class Product {
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private  Long idProducts;
@@ -22,4 +24,12 @@ public class Product {
     @JoinColumn(name = "idProductCategory")
     private ProductCategory productCategory;
 
+
+    public Long getIdProducts() {
+        return idProducts;
+    }
+
+    public void setIdProducts(Long idProducts) {
+        this.idProducts = idProducts;
+    }
 }
