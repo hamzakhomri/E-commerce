@@ -1,4 +1,4 @@
-package com.example.Ecommerce.Services.UserAdresse;
+package com.example.Ecommerce.Services.Userr.UserAdresse;
 
 import com.example.Ecommerce.Model.User.Useradresse;
 import com.example.Ecommerce.Model.User.Userr;
