@@ -1,9 +1,8 @@
-package com.example.Ecommerce.Repository;
+package com.example.Ecommerce.Repository.User;
 
-import com.example.Ecommerce.Model.Useradresse;
+import com.example.Ecommerce.Model.User.Useradresse;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
 import java.util.Optional;
 
 public interface UserAdresseRepository extends JpaRepository<Useradresse,Long> {
