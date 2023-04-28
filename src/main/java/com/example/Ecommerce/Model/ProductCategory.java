@@ -14,9 +14,9 @@ public class ProductCategory {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idProductCategory;
     private String nameProductCategory;
-    private LocalDateTime modified_atUser;
+    private LocalDateTime modified_Product;
     @CreatedDate()
-    private LocalDateTime created_atUser;
+    private LocalDateTime created_Product;
 
     @OneToMany(mappedBy = "productCategory",cascade = CascadeType.ALL,fetch = FetchType.LAZY )
     private List<Product> products;
