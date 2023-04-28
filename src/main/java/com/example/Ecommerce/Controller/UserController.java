@@ -1,7 +1,7 @@
 package com.example.Ecommerce.Controller;
 
-import com.example.Ecommerce.Model.Useradresse;
-import com.example.Ecommerce.Model.Userr;
+import com.example.Ecommerce.Model.User.Useradresse;
+import com.example.Ecommerce.Model.User.Userr;
 import com.example.Ecommerce.Services.USer.IUserService;
 import com.example.Ecommerce.Services.UserAdresse.IUserAdresseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/user")
