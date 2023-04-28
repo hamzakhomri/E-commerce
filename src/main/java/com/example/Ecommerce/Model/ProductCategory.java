@@ -19,5 +19,5 @@ public class ProductCategory {
     private LocalDateTime created_atUser;
 
     @OneToMany(mappedBy = "productCategory",cascade = CascadeType.ALL,fetch = FetchType.LAZY )
-    private List<Products> products;
+    private List<Product> products;
 }
