@@ -1,6 +1,6 @@
 package com.example.Ecommerce.Services.UserAdresse;
 
-import com.example.Ecommerce.Model.Useradresse;
+import com.example.Ecommerce.Model.User.Useradresse;
 import java.util.List;
 
 public interface IUserAdresseService {
