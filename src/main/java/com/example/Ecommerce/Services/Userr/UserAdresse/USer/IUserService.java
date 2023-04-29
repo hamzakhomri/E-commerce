@@ -7,7 +7,6 @@ import java.util.List;
 
 public interface IUserService {
     Userr update(Long IdUser , Userr userr);
-    Userr update2(Long IdUser, Userr userr, Useradresse useradresse);
     Userr getOneUserByID(Long IdUser);
     Userr getOneBynameUser(String nameUser);
     Userr create(Userr userr);
