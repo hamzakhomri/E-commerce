@@ -18,32 +18,18 @@ public class UserController {
     @Autowired
     private IUserAdresseService userAdresseService;
 
+    @PutMapping("/{IdUser}")
+    public Userr UpdateUser(@PathVariable Long IdUser,@RequestBody Userr userr){
+        return userService.update(IdUser,userr);
+    }
+
     @GetMapping("/filter")
     public Userr getUserBynameUser(@RequestParam("nameUser") String nameUser){
         return userService.getOneBynameUser(nameUser);
     }
-
     @GetMapping("/{IdUser}")//'Done
     public Userr GetUserByID(@PathVariable("IdUser")Long IdUser){
         return userService.getOneUserByID(IdUser);
-    }
-
-    @PutMapping("/{IdUser}")//Done
-    public Userr updateUser(@PathVariable Long IdUser, @RequestBody Userr userr)
-    {
-        Userr updateUser =userService.update(IdUser,userr);
-        if (updateUser!=null){
-            return ResponseEntity.ok(updateUser).getBody();
-        }
-        else {
-            return null;
-        }
-    }
-
-    @PutMapping("updates/{IdUser}")
-    public ResponseEntity<?> updateUserAndAdresse(@PathVariable Long userrId, @RequestBody Userr userr, @RequestBody Useradresse useradresse) {
-        userService.update2(userrId, userr.getUserAdresse().getUserr(), useradresse.getUserr().getUserAdresse());
-        return ResponseEntity.ok().build();
     }
 
     @PostMapping()//Don
