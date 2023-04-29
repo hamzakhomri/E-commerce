@@ -8,5 +8,6 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<Userr,Long> {
     Optional<Userr> findByNameUserStartsWith(String nameUser);
 
+    boolean existsByIdUser(Long idUser);
 
 }
