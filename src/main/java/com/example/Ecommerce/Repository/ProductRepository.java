@@ -10,5 +10,5 @@ import java.util.Optional;
 public interface ProductRepository extends JpaRepository<Product,Long> {
     boolean existsByIdProducts(Long idProducts);
     Optional<Product> findByNameProductsStartsWith(String nameProducts);
-    Optional<Product> findByCreated_atUser(LocalDateTime created_Product);
+    //Optional<Product> findByCreated_atUser(LocalDateTime created_Product);
 }
