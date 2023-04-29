@@ -10,10 +10,11 @@ public interface IProductService {
     void deleteProductByID(Long idProducts);
     Product updateProduct(Long idProducts,Product product);
 
-    //======================== GET ====================================
+    //======================== GET ====================================//
+
     List<Product> GetAll();
-    Product GetById(Long idProducts,Product product);
-    Product GetByName(String nameProducts,Product product);
-    Product GetByDateCreated(LocalDateTime created_Product,Product product);
+    Product GetById(Long idProducts);
+    Product GetByName(String nameProducts);
+    //Product GetByDateCreated(LocalDateTime created_Product);
 
 }
