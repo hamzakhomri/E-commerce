@@ -1,6 +1,7 @@
 package com.example.Ecommerce.Controller.Userr;
 
 import com.example.Ecommerce.Model.User.Useradresse;
+import com.example.Ecommerce.Model.User.Userr;
 import com.example.Ecommerce.Services.Userr.UserAdresse.IUserAdresseService;
 import com.example.Ecommerce.Services.Userr.UserAdresse.UserAdresseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,10 @@ public class UserAdresseController {
     private UserAdresseService userAdresseService;
 
 
+    @PutMapping("/{idUserAdresse}")
+    public Useradresse update(@PathVariable Long idUserAdresse,@RequestBody Useradresse useradresse){
+        return iUserAdresseService.update(idUserAdresse,useradresse);
+    }
 
     @GetMapping()
     public List<Useradresse> getAll(){
@@ -43,12 +48,5 @@ public class UserAdresseController {
     public Useradresse assignToUser(@PathVariable Long idUser, @RequestBody Useradresse useradresse ){
        useradresse.setIdUserAdresse(idUser);
          return iUserAdresseService.assign(idUser,useradresse);
-     }
-
-     @PutMapping("/user/{idUser}")
-    public Useradresse update(@PathVariable Long idUser, @RequestBody Useradresse useradresse){
-        useradresse.setIdUserAdresse(idUser);
-            return iUserAdresseService.update(idUser,useradresse);
-
      }
 }
