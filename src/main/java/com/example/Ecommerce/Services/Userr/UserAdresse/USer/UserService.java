@@ -18,7 +18,9 @@ public class UserService implements IUserService {
     UserAdresseRepository userAdresseRepository;
 
 
-
+    public boolean IFExistUset(Long idUser){
+        return userRepository.existsByIdUser(idUser);
+    }
     @Override
     public Userr create(Userr userr) {
         userr.setCreated_atUser(LocalDateTime.now());
@@ -31,6 +33,21 @@ public class UserService implements IUserService {
         return userRepository.findAll();
     }
 
+
+    @Override
+    public Userr update(Long IdUser, Userr userr) {
+        Userr oldUser=userRepository.findById(IdUser).get();
+        if (IFExistUset(IdUser)==true){
+            userr.setIdUser(IdUser);
+            userr.setModified_atUser(LocalDateTime.now());
+            userr.setCreated_atUser(oldUser.getCreated_atUser());
+            return userRepository.save(userr);
+        }
+        else {
+            return null;
+        }
+    }
+
     @Override
     public Userr getOneUserByID(Long IdUser) {//dont
         return userRepository.findById(IdUser).orElse(null);
@@ -41,23 +58,6 @@ public class UserService implements IUserService {
         return userRepository.findByNameUserStartsWith(nameUser).orElse(null);
     }
 
-
-    @Override
-    public Userr update(Long IdUser, Userr userr) {
-        Userr existUser = userRepository.findById(IdUser).orElse(null);
-        if (existUser!=null){
-            userr.setModified_atUser(LocalDateTime.now());
-            userr.setNameUser(userr.getNameUser());
-            return userRepository.save(userr);
-        }else {
-            return null;
-        }
-    }
-
-    @Override
-    public Userr update2(Long IdUser, Userr userr, Useradresse useradresse) {
-        return null;
-    }
 
     @Override
     public void deleteUser(Long IdUser) {
