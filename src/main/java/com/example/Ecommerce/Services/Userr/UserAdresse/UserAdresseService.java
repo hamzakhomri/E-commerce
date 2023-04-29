@@ -20,6 +20,13 @@ public class UserAdresseService implements IUserAdresseService {
         return userAdresseRepository.existsByUserr_IdUser(idUser);
     }
 
+    @Override
+    public Useradresse update(Long idUserAdresse, Useradresse useradresse) {
+        Useradresse old = userAdresseRepository.findById(idUserAdresse).get();
+        useradresse.setUserr(old.getUserr());
+        useradresse.setIdUserAdresse(idUserAdresse);
+        return userAdresseRepository.save(useradresse);
+    }
 
     @Override
     public Useradresse findByUserr_NameUserLike(String nameUser) {
@@ -54,18 +61,5 @@ public class UserAdresseService implements IUserAdresseService {
             return userAdresseRepository.findById(idUser).get();
         }
     }
-
-    public Useradresse update(Long idUser, Useradresse userAdresse) {
-        if (!IfExistUser(idUser)){
-            userAdresse.setUserr(userAdresse.getUserr());
-
-            userAdresse.setNameUserAdresse(userAdresse.getNameUserAdresse());
-            return userAdresseRepository.save(userAdresse);
-        }
-        else {
-            return userAdresseRepository.findById(idUser).get();
-        }
-    }
-
 
 }
