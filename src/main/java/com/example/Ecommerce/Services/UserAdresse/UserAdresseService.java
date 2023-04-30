@@ -4,11 +4,11 @@ import com.example.Ecommerce.Model.Useradresse;
 import com.example.Ecommerce.Model.Userr;
 import com.example.Ecommerce.Repository.UserAdresseRepository;
 import com.example.Ecommerce.Repository.UserRepository;
-import com.example.Ecommerce.Services.UserAdresse.IUserAdresseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserAdresseService implements IUserAdresseService {
@@ -21,27 +21,7 @@ public class UserAdresseService implements IUserAdresseService {
         return userAdresseRepository.existsByUserr_IdUser(idUser);
     }
 
-    @Override
-    public Useradresse update(Long idUserAdresse, Useradresse useradresse) {
-        Useradresse old = userAdresseRepository.findById(idUserAdresse).get();
-        useradresse.setUserr(old.getUserr());
-        useradresse.setIdUserAdresse(idUserAdresse);
-        return userAdresseRepository.save(useradresse);
-    }
-
-    @Override
-    public Useradresse findByUserr_NameUserLike(String nameUser) {
-        return userAdresseRepository.findByUserr_NameUserLike(nameUser).orElse(null);
-    }
-
-
-
-
-    @Override
-    public Useradresse create(Useradresse useradresse){
-        return userAdresseRepository.save(useradresse);
-    }
-
+    //°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°° GET °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°
     @Override
     public Useradresse getOneByID(Long idUserAdresse) {
         return userAdresseRepository.findById(idUserAdresse).get();
@@ -52,6 +32,26 @@ public class UserAdresseService implements IUserAdresseService {
         return userAdresseRepository.findAll();
     }
 
+    @Override
+    public List<Useradresse> getUserAdressesByUserName(String name) {
+        return userAdresseRepository.findByUserrNameUser(name);
+    }
+
+    //°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°° END GET °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°
+
+
+
+    @Override
+    public Useradresse update(Long idUserAdresse, Useradresse useradresse) {
+        Useradresse old = userAdresseRepository.findById(idUserAdresse).get();
+        useradresse.setUserr(old.getUserr());
+        useradresse.setIdUserAdresse(idUserAdresse);
+        return userAdresseRepository.save(useradresse);
+    }
+    @Override
+    public Useradresse create(Useradresse useradresse){
+        return userAdresseRepository.save(useradresse);
+    }
     @Override
     public Useradresse assign(Long idUser, Useradresse useradresse) {
         if (!IfExistUser(idUser)){
