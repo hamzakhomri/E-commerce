@@ -1,13 +1,13 @@
-package com.example.Ecommerce.Controller.Userr;
+package com.example.Ecommerce.Controller;
 
-import com.example.Ecommerce.Model.User.Useradresse;
-import com.example.Ecommerce.Model.User.Userr;
-import com.example.Ecommerce.Services.Userr.UserAdresse.USer.IUserService;
-import com.example.Ecommerce.Services.Userr.UserAdresse.IUserAdresseService;
+import com.example.Ecommerce.Model.Userr;
+import com.example.Ecommerce.Services.USer.IUserService;
+import com.example.Ecommerce.Services.UserAdresse.IUserAdresseService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.SocketException;
+import java.net.UnknownHostException;
 import java.util.List;
 
 @RestController
@@ -33,7 +33,7 @@ public class UserController {
     }
 
     @PostMapping()//Don
-    public Userr createUser(@RequestBody Userr userr){
+    public Userr createUser(@RequestBody Userr userr) throws UnknownHostException, SocketException {
         return userService.create(userr);
     }
     @GetMapping()//Done
