@@ -1,7 +1,6 @@
-package com.example.Ecommerce.Services.Userr.UserAdresse;
+package com.example.Ecommerce.Services.UserAdresse;
 
-import com.example.Ecommerce.Model.User.Useradresse;
-import com.example.Ecommerce.Model.User.Userr;
+import com.example.Ecommerce.Model.Useradresse;
 
 import java.util.List;
 
