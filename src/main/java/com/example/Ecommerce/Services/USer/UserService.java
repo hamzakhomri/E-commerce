@@ -1,12 +1,14 @@
-package com.example.Ecommerce.Services.Userr.UserAdresse.USer;
+package com.example.Ecommerce.Services.USer;
 
-import com.example.Ecommerce.Model.User.Useradresse;
-import com.example.Ecommerce.Model.User.Userr;
-import com.example.Ecommerce.Repository.User.UserAdresseRepository;
-import com.example.Ecommerce.Repository.User.UserRepository;
+import com.example.Ecommerce.Model.Userr;
+import com.example.Ecommerce.Repository.UserAdresseRepository;
+import com.example.Ecommerce.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.net.InetAddress;
+import java.net.SocketException;
+import java.net.UnknownHostException;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -22,7 +24,12 @@ public class UserService implements IUserService {
         return userRepository.existsByIdUser(idUser);
     }
     @Override
-    public Userr create(Userr userr) {
+    public Userr create(Userr userr) throws UnknownHostException, SocketException {
+        String ipAddress = InetAddress.getLocalHost().getHostAddress();
+        userr.setAdresseIP(ipAddress);
+
+        userr.setAdresseMAC(userr.getAdresseMAC());
+
         userr.setCreated_atUser(LocalDateTime.now());
         userr.setModified_atUser(LocalDateTime.now());
         return this.userRepository.save(userr);
