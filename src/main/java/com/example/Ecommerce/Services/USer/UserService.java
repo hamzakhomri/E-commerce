@@ -25,6 +25,7 @@ public class UserService implements IUserService {
     }
     @Override
     public Userr create(Userr userr) throws UnknownHostException, SocketException {
+
         String ipAddress = InetAddress.getLocalHost().getHostAddress();
         userr.setAdresseIP(ipAddress);
 
@@ -43,7 +44,7 @@ public class UserService implements IUserService {
 
     @Override
     public Userr update(Long IdUser, Userr userr) {
-        Userr oldUser=userRepository.findById(IdUser).get();
+        Userr oldUser=userRepository.findById(IdUser).orElse(null);
         if (IFExistUset(IdUser)==true){
             userr.setIdUser(IdUser);
             userr.setModified_atUser(LocalDateTime.now());
@@ -53,7 +54,7 @@ public class UserService implements IUserService {
             return userRepository.save(userr);
         }
         else {
-            return userRepository.findById(IdUser).get();
+            return oldUser;
         }
     }
 
@@ -70,7 +71,10 @@ public class UserService implements IUserService {
 
     @Override
     public void deleteUser(Long IdUser) {
-         userRepository.deleteById(IdUser);
-
+        if (IFExistUset(IdUser)){
+            userRepository.deleteById(IdUser);
+        }else {
+            userRepository.findById(IdUser);
+        }
     }
 }
