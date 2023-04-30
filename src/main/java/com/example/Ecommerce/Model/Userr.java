@@ -1,6 +1,5 @@
 package com.example.Ecommerce.Model;
 
-import com.example.Ecommerce.Model.Useradresse;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
