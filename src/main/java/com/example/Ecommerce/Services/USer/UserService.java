@@ -48,10 +48,12 @@ public class UserService implements IUserService {
             userr.setIdUser(IdUser);
             userr.setModified_atUser(LocalDateTime.now());
             userr.setCreated_atUser(oldUser.getCreated_atUser());
+            userr.setAdresseMAC(oldUser.getAdresseMAC());
+            userr.setAdresseIP(oldUser.getAdresseIP());
             return userRepository.save(userr);
         }
         else {
-            return null;
+            return userRepository.findById(IdUser).get();
         }
     }
 
