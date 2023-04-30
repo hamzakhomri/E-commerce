@@ -43,10 +43,15 @@ public class UserAdresseService implements IUserAdresseService {
 
     @Override
     public Useradresse update(Long idUserAdresse, Useradresse useradresse) {
-        Useradresse old = userAdresseRepository.findById(idUserAdresse).get();
-        useradresse.setUserr(old.getUserr());
-        useradresse.setIdUserAdresse(idUserAdresse);
-        return userAdresseRepository.save(useradresse);
+        Useradresse old = userAdresseRepository.findById(idUserAdresse).orElse(null);
+        if (IfExistUser(idUserAdresse)==true){
+            useradresse.setUserr(old.getUserr());
+            useradresse.setIdUserAdresse(idUserAdresse);
+            return userAdresseRepository.save(useradresse);
+        }
+        else {
+            return old;
+        }
     }
     @Override
     public Useradresse create(Useradresse useradresse){
@@ -54,12 +59,12 @@ public class UserAdresseService implements IUserAdresseService {
     }
     @Override
     public Useradresse assign(Long idUser, Useradresse useradresse) {
-        if (!IfExistUser(idUser)){
+        if (IfExistUser(idUser)){
             useradresse.setUserr(new Userr(idUser));
             return userAdresseRepository.save(useradresse);
         }
         else {
-            return userAdresseRepository.findById(idUser).get();
+            return null;
         }
     }
 
