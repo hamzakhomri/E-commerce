@@ -1,9 +1,10 @@
-package com.example.Ecommerce.Services.Userr.UserAdresse;
+package com.example.Ecommerce.Services.UserAdresse;
 
-import com.example.Ecommerce.Model.User.Useradresse;
-import com.example.Ecommerce.Model.User.Userr;
-import com.example.Ecommerce.Repository.User.UserAdresseRepository;
-import com.example.Ecommerce.Repository.User.UserRepository;
+import com.example.Ecommerce.Model.Useradresse;
+import com.example.Ecommerce.Model.Userr;
+import com.example.Ecommerce.Repository.UserAdresseRepository;
+import com.example.Ecommerce.Repository.UserRepository;
+import com.example.Ecommerce.Services.UserAdresse.IUserAdresseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
