@@ -1,27 +1,21 @@
 package com.example.Ecommerce.Controller;
 
 import com.example.Ecommerce.Model.Useradresse;
+import com.example.Ecommerce.Model.Userr;
 import com.example.Ecommerce.Services.UserAdresse.IUserAdresseService;
 import com.example.Ecommerce.Services.UserAdresse.UserAdresseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/useradresse")
 public class UserAdresseController {
      @Autowired
      IUserAdresseService iUserAdresseService;
-     @Autowired
-    private UserAdresseService userAdresseService;
-
-
-    @PutMapping("/{idUserAdresse}")
-    public Useradresse update(@PathVariable Long idUserAdresse,@RequestBody Useradresse useradresse){
-        return iUserAdresseService.update(idUserAdresse,useradresse);
-    }
-
+//°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°° GET °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°
     @GetMapping()
     public List<Useradresse> getAll(){
         return iUserAdresseService.getlAll();
@@ -29,14 +23,18 @@ public class UserAdresseController {
 
     @GetMapping("/{idUserAdresse}")
     public Useradresse GetOneById(@PathVariable(name = "idUserAdresse")Long idUserAdresse){
-         return iUserAdresseService.getOneByID(idUserAdresse);
-     }
+        return iUserAdresseService.getOneByID(idUserAdresse);
+    }
+    @GetMapping("user/{nameUser}")
+    private List<Useradresse> getBynameUser(@PathVariable(name = "nameUser") String nameUser){
+        return iUserAdresseService.getUserAdressesByUserName(nameUser);
+    }
 
-     @GetMapping("/filter")
-     public Useradresse GetLikeUsername(@PathVariable String nameUser){
-        return userAdresseService.findByUserr_NameUserLike(nameUser);
-     }
-
+    //°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°° END GET °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°
+    @PutMapping("/{idUserAdresse}")
+    public Useradresse update(@PathVariable Long idUserAdresse,@RequestBody Useradresse useradresse){
+        return iUserAdresseService.update(idUserAdresse,useradresse);
+    }
 
     @PostMapping()
     public Useradresse save(@RequestBody Useradresse useradresse){
