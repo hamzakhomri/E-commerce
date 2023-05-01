@@ -40,6 +40,7 @@ public class Userr {
     public String getAdresseIP() { return adresseIP; }
     public void setAdresseIP(String adresseIP) { this.adresseIP = adresseIP; }
 
+
     public String getAdresseMAC() {
         try {
             InetAddress ip = InetAddress.getLocalHost();
