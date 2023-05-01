@@ -25,9 +25,9 @@ public class UserAdresseController {
     public Useradresse GetOneById(@PathVariable(name = "idUserAdresse")Long idUserAdresse){
         return iUserAdresseService.getOneByID(idUserAdresse);
     }
-    @GetMapping("user/{nameUser}")
+    @GetMapping("/filter/{nameUser}")
     private List<Useradresse> getBynameUser(@PathVariable(name = "nameUser") String nameUser){
-        return iUserAdresseService.getUserAdressesByUserName(nameUser);
+        return iUserAdresseService.findByUserr_NameUserStartsWith(nameUser);
     }
 
     //°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°° END GET °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°
