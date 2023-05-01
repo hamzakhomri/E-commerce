@@ -8,6 +8,6 @@ import java.util.Optional;
 
 public interface UserAdresseRepository extends JpaRepository<Useradresse,Long> {
     boolean existsByUserr_IdUser(Long idUser);
-    List<Useradresse> findByUserrNameUser(String nameUser);
-
+    List<Useradresse> findByUserr_NameUserStartsWith(String nameUser);
+    //List<Useradresse> findByUserrNameUser(String nameUser);
 }
