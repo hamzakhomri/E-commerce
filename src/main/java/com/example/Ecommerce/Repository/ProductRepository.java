@@ -3,11 +3,15 @@ package com.example.Ecommerce.Repository;
 import com.example.Ecommerce.Model.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 
 public interface ProductRepository extends JpaRepository<Product,Long> {
     boolean existsByIdProducts(Long idProducts);
-    Optional<Product> findByNameProductsStartsWith(String nameProducts);
-    //Optional<Product> findByCreated_atUser(LocalDateTime created_Product);
+    List<Product> findByNameProductsStartsWith(String nameProducts);
+    List<Optional<Product>> findByCreatedatProduct(String createdatProduct);
+
+
 }
