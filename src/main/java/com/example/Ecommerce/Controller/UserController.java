@@ -6,6 +6,7 @@ import com.example.Ecommerce.Services.UserAdresse.IUserAdresseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.util.List;
@@ -33,7 +34,8 @@ public class UserController {
     }
 
     @PostMapping()//Don
-    public Userr createUser(@RequestBody Userr userr) throws UnknownHostException, SocketException {
+    public Userr createUser(HttpServletRequest request, @RequestBody Userr userr) throws UnknownHostException, SocketException {
+        System.out.println(request.getRemoteAddr());
         return userService.create(userr);
     }
     @GetMapping()//Done
