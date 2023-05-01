@@ -45,7 +45,7 @@ public class UserService implements IUserService {
     @Override
     public Userr update(Long IdUser, Userr userr) {
         Userr oldUser=userRepository.findById(IdUser).orElse(null);
-        if (IFExistUset(IdUser)==true){
+        if (IFExistUset(IdUser)){
             userr.setIdUser(IdUser);
             userr.setModified_atUser(LocalDateTime.now());
             userr.setCreated_atUser(oldUser.getCreated_atUser());
