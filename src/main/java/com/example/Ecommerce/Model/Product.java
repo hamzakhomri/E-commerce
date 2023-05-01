@@ -16,35 +16,10 @@ public class Product {
     private  Long idProducts;
     private String nameProducts;
     @CreatedDate()
-    private LocalDateTime created_atProduct;
-    private LocalDateTime modified_atProduct;
+    private String createdatProduct;
+    private String modifiedatProduct;
 
-
-
-    public LocalDateTime getModified_atProduct() {
-        return modified_atProduct;
-    }
-    public void setModified_atProduct(LocalDateTime modified_atProduct) {
-        this.modified_atProduct = modified_atProduct;
-    }
-
-    public LocalDateTime getCreated_atProduct() {
-        return created_atProduct;
-    }
-
-    public void setCreated_atProduct(LocalDateTime created_atProduct) {
-        this.created_atProduct = created_atProduct;
-    }
-
-
-
-
-
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "idProductCategory")
-    private ProductCategory productCategory;
-
+//°°°°°°°°°°°GETTER AND SETTER °°°°°°°°°°°°°°°°°°°°°°°°°°
 
     public Long getIdProducts() {
         return idProducts;
@@ -53,4 +28,43 @@ public class Product {
     public void setIdProducts(Long idProducts) {
         this.idProducts = idProducts;
     }
+
+    public String getNameProducts() {
+        return nameProducts;
+    }
+
+    public void setNameProducts(String nameProducts) {
+        this.nameProducts = nameProducts;
+    }
+
+    public String getCreatedatProduct() {
+        return createdatProduct;
+    }
+
+    public void setCreatedatProduct(String createdatProduct) {
+        this.createdatProduct = createdatProduct;
+    }
+
+    public String getModifiedatProduct() {
+        return modifiedatProduct;
+    }
+
+    public void setModifiedatProduct(String modifiedatProduct) {
+        this.modifiedatProduct = modifiedatProduct;
+    }
+
+    public ProductCategory getProductCategory() {
+        return productCategory;
+    }
+
+    public void setProductCategory(ProductCategory productCategory) {
+        this.productCategory = productCategory;
+    }
+
+// °°°°°°°END GETTER AND SETTER °°°°°°°°°°°°°°°°°°°°°°°°°
+
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "idProductCategory")
+    private ProductCategory productCategory;
 }
