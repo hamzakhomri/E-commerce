@@ -3,11 +3,13 @@ package com.example.Ecommerce.Controller;
 import com.example.Ecommerce.Model.Product;
 import com.example.Ecommerce.Services.Product.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/product")
@@ -15,6 +17,27 @@ import java.util.List;
 public class ProductController {
     @Autowired
     private IProductService iProductService;
+
+    //======================== GET ====================================
+    @GetMapping()
+    public List<Product> GrtAll(){
+        return iProductService.GetAll();
+    }
+    @GetMapping("/{idProducts}")
+    public Product GetById (@PathVariable Long idProducts){
+        return iProductService.GetById(idProducts);
+    }
+
+    @GetMapping("/filterbyname/{nameProducts}")
+    public List<Product> GetProductBynameProducts(@PathVariable String nameProducts){
+        return iProductService.findByNameProductsStartsWith(nameProducts);
+    }
+
+    @GetMapping("/filerbydatecreated")
+    public  List<Optional<Product>> findByCreated_atProduct(@RequestParam(name = "createdatProduct") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) String createdatProduct){
+        return iProductService.findByCreatedatProduct(createdatProduct);
+    }
+    //======================== END GET ====================================
 
     @PostMapping()
     public Product create(@RequestBody Product product){
@@ -34,21 +57,4 @@ public class ProductController {
     public void deleteProduct(@PathVariable Long idProducts){
         this.iProductService.deleteProductByID(idProducts);
     }
-
-    //======================== GET ====================================
-    @GetMapping()
-    public List<Product> GrtAll(){
-        return iProductService.GetAll();
-    }
-    @GetMapping("/{idProducts}")
-    public Product GetById (@PathVariable Long idProducts){
-        return iProductService.GetById(idProducts);
-    }
-
-    @GetMapping("/{nameProducts}")
-    public Product GetByName (@PathVariable String nameProducts){
-        return iProductService.GetByName(nameProducts);
-    }
-    //@GetMapping("/{created_Product}")
-    //public Product GetByDate(@PathVariable LocalDateTime created_Product){return iProductService.GetByDateCreated(created_Product);}
 }
