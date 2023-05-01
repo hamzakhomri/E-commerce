@@ -4,6 +4,7 @@ import com.example.Ecommerce.Model.Product;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 public interface IProductService {
     Product createProduct(Product product);
@@ -14,7 +15,8 @@ public interface IProductService {
 
     List<Product> GetAll();
     Product GetById(Long idProducts);
-    Product GetByName(String nameProducts);
-    //Product GetByDateCreated(LocalDateTime created_Product);
+    List<Product> findByNameProductsStartsWith(String nameProducts);
+    List<Optional<Product>> findByCreatedatProduct(String createdatProduct);
+
 
 }
