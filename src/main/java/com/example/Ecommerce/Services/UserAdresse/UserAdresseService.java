@@ -24,7 +24,7 @@ public class UserAdresseService implements IUserAdresseService {
     //°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°° GET °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°
     @Override
     public Useradresse getOneByID(Long idUserAdresse) {
-        return userAdresseRepository.findById(idUserAdresse).get();
+        return userAdresseRepository.findById(idUserAdresse).orElse(null);
     }
 
     @Override
@@ -33,7 +33,7 @@ public class UserAdresseService implements IUserAdresseService {
     }
 
     @Override
-    public List<Useradresse> findByUserr_NameUserStartsWith(String nameUser) {
+    public List<Optional<Useradresse>> findByUserr_NameUserStartsWith(String nameUser) {
         return userAdresseRepository.findByUserr_NameUserStartsWith(nameUser);
     }
 
@@ -65,12 +65,10 @@ public class UserAdresseService implements IUserAdresseService {
                 useradresse.setUserr(new Userr(idUser));
                 return userAdresseRepository.save(useradresse);
             } else {
-                // handle the case where useradresse is null
-                return old; // or throw a custom exception, return a default value, etc.
+                return null;
             }
         } else {
-            // handle the case where the user already exists
-            return old; // or throw a custom exception, return a default value, etc.
+            return null;
         }
     }
 
