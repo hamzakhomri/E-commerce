@@ -11,6 +11,7 @@ import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService implements IUserService {
@@ -64,10 +65,9 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public Userr getOneBynameUser(String nameUser) {
-        return userRepository.findByNameUserStartsWith(nameUser).orElse(null);
+    public List<Optional<Userr>> getOneBynameUser(String nameUser) {
+        return userRepository.findByNameUserStartsWith(nameUser);
     }
-
 
     @Override
     public void deleteUser(Long IdUser) {
