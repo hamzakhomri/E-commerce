@@ -16,16 +16,10 @@ public class ProductService implements IProductService{
     @Autowired
     ProductRepository productRepository;
 
-
-
-
-
-
     @Override
     public Product createProduct(Product product){
         LocalDateTime dateTime = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy'T'HH:mm:ss");
-
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
 
         product.setCreatedatProduct(dateTime.format(formatter));
         product.setModifiedatProduct(dateTime.format(formatter));
@@ -49,7 +43,7 @@ public class ProductService implements IProductService{
     @Override
     public Product updateProduct(Long idProducts, Product product) {
         LocalDateTime dateTime = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy'T'HH:mm:ss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
         if (IfExistProduct(idProducts)){
 
             Product old = productRepository.findById(idProducts).orElse(null);
