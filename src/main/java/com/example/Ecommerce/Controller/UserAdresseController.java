@@ -1,9 +1,7 @@
 package com.example.Ecommerce.Controller;
 
 import com.example.Ecommerce.Model.Useradresse;
-import com.example.Ecommerce.Model.Userr;
 import com.example.Ecommerce.Services.UserAdresse.IUserAdresseService;
-import com.example.Ecommerce.Services.UserAdresse.UserAdresseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,8 +23,8 @@ public class UserAdresseController {
     public Useradresse GetOneById(@PathVariable(name = "idUserAdresse")Long idUserAdresse){
         return iUserAdresseService.getOneByID(idUserAdresse);
     }
-    @GetMapping("/filter/{nameUser}")
-    private List<Useradresse> getBynameUser(@PathVariable(name = "nameUser") String nameUser){
+    @GetMapping("/getbyname/{nameUser}")
+    private List<Optional<Useradresse>>getBynameUser(@PathVariable(name = "nameUser") String nameUser){
         return iUserAdresseService.findByUserr_NameUserStartsWith(nameUser);
     }
 
