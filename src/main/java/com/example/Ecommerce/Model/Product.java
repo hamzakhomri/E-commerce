@@ -5,7 +5,6 @@ import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -62,8 +61,7 @@ public class Product {
     }
 
 // °°°°°°°END GETTER AND SETTER °°°°°°°°°°°°°°°°°°°°°°°°°
-
-
+    
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idProductCategory")
     private ProductCategory productCategory;
