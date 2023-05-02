@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/user")
@@ -25,7 +26,7 @@ public class UserController {
     }
 
     @GetMapping("/filter")
-    public Userr getUserBynameUser(@RequestParam("nameUser") String nameUser){
+    public List<Optional<Userr>> getUserBynameUser(@RequestParam("nameUser") String nameUser){
         return userService.getOneBynameUser(nameUser);
     }
     @GetMapping("/{IdUser}")//'Done
