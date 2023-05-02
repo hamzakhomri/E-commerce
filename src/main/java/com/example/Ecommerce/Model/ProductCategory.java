@@ -1,23 +1,64 @@
 package com.example.Ecommerce.Model;
 
 import lombok.Data;
+import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
 @Entity
+@DynamicUpdate
 public class ProductCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idProductCategory;
     private String nameProductCategory;
-    private LocalDateTime modified_Product;
+
     @CreatedDate()
-    private LocalDateTime created_Product;
+    private String createdProductCategory;
+    private String modifiedProductCategory;
 
     @OneToMany(mappedBy = "productCategory",cascade = CascadeType.ALL,fetch = FetchType.LAZY )
     private List<Product> products;
+
+    public Long getIdProductCategory() {
+        return idProductCategory;
+    }
+
+    public void setIdProductCategory(Long idProductCategory) {
+        this.idProductCategory = idProductCategory;
+    }
+
+    public String getNameProductCategory() {
+        return nameProductCategory;
+    }
+    public void setNameProductCategory(String nameProductCategory) {
+        this.nameProductCategory = nameProductCategory;
+    }
+
+    public String getModifiedProductCategory() {
+        return modifiedProductCategory;
+    }
+
+    public void setModifiedProductCategory(String modifiedProductCategory) {
+        this.modifiedProductCategory = modifiedProductCategory;
+    }
+
+    public String getCreatedProductCategory() {
+        return createdProductCategory;
+    }
+
+    public void setCreatedProductCategory(String createdProductCategory) {
+        this.createdProductCategory = createdProductCategory;
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
 }
