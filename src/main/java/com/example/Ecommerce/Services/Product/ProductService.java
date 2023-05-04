@@ -1,6 +1,8 @@
 package com.example.Ecommerce.Services.Product;
 
 import com.example.Ecommerce.Model.Product;
+import com.example.Ecommerce.Model.ProductCategory;
+import com.example.Ecommerce.Model.Productpicture;
 import com.example.Ecommerce.Repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,19 +17,25 @@ import java.util.Optional;
 public class ProductService implements IProductService{
     @Autowired
     ProductRepository productRepository;
-
+    public boolean IfExistProduct(Long idProducts){
+        return productRepository.existsByIdProducts(idProducts);
+    }
+    public boolean IfExixstProductPitureAndCategory(Long idProductCategory,Long idProductpicture){
+        return productRepository.existsByProductCategory_IdProductCategoryAndProductpictures_IdProductpicture(idProductCategory,idProductpicture);
+    }
     @Override
-    public Product createProduct(Product product){
+    public Product createProduct(Product product, Long idProductpicture)
+    {
         LocalDateTime dateTime = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
 
         product.setCreatedatProduct(dateTime.format(formatter));
         product.setModifiedatProduct(dateTime.format(formatter));
+        product.setproductpictre(new Productpicture(idProductpicture));
         return this.productRepository.save(product);
     }
-    public boolean IfExistProduct(Long idProducts){
-        return productRepository.existsByIdProducts(idProducts);
-    }
+
+
 
     @Override
     public void deleteProductByID(Long idProducts) {
