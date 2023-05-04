@@ -72,4 +72,6 @@ public class Product {
     @OneToMany(mappedBy = "product",cascade = CascadeType.ALL)
     private List<Productpicture>productpictures;
 
+    public void setproductpictre(Productpicture productpicture) {
+    }
 }
