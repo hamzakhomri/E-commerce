@@ -59,7 +59,6 @@ public class UserAdresseService implements IUserAdresseService {
     }
     @Override
     public Useradresse assign(Long idUser, Useradresse useradresse) {
-        Useradresse old = userAdresseRepository.findById(idUser).orElse(null);
         if (!IfExistUser(idUser)) {
             if (useradresse != null) {
                 useradresse.setUserr(new Userr(idUser));
