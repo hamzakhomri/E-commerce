@@ -5,6 +5,7 @@ import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -61,8 +62,14 @@ public class Product {
     }
 
 // °°°°°°°END GETTER AND SETTER °°°°°°°°°°°°°°°°°°°°°°°°°
-    
+
+    //==Relation With Product Category
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idProductCategory")
     private ProductCategory productCategory;
+
+    //==Relation With Product Picture
+    @OneToMany(mappedBy = "product",cascade = CascadeType.ALL)
+    private List<ProductPicture>productPictures;
+
 }
