@@ -70,6 +70,6 @@ public class Product {
 
     //==Relation With Product Picture
     @OneToMany(mappedBy = "product",cascade = CascadeType.ALL)
-    private List<ProductPicture>productPictures;
+    private List<Productpicture>productpictures;
 
 }
