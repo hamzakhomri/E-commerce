@@ -12,8 +12,8 @@ public class Productpicture {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    private Long id;
-    private String name;
+    private Long idProductpicture;
+    private String nameProductpicture;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idProduct")
