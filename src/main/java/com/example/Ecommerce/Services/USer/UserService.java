@@ -1,7 +1,6 @@
 package com.example.Ecommerce.Services.USer;
 
 import com.example.Ecommerce.Model.Userr;
-import com.example.Ecommerce.Repository.UserAdresseRepository;
 import com.example.Ecommerce.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,8 +16,6 @@ import java.util.Optional;
 public class UserService implements IUserService {
     @Autowired
     UserRepository userRepository;
-    @Autowired
-    UserAdresseRepository userAdresseRepository;
 
 
     public boolean IFExistUset(Long idUser){
