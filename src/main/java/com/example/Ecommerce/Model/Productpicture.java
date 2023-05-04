@@ -8,12 +8,12 @@ import javax.persistence.*;
 @Entity
 
 
-public class ProductPicture {
+public class Productpicture {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    private Long idProductPicture;
-    private String nameProductPicture;
+    private Long id;
+    private String name;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idProduct")
