@@ -1,6 +1,7 @@
 package com.example.Ecommerce.Controller;
 
 import com.example.Ecommerce.Model.Product;
+import com.example.Ecommerce.Model.Productpicture;
 import com.example.Ecommerce.Services.Product.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -39,9 +40,11 @@ public class ProductController {
     }
     //======================== END GET ====================================
 
-    @PostMapping()
-    public Product create(@RequestBody Product product){
-        return iProductService.createProduct(product);
+    @PostMapping("picture/{idProductpicture}")
+    public Product create(@RequestBody Product product,@PathVariable Long idProductpicture){
+
+
+        return iProductService.createProduct(product,idProductpicture);
     }
     @PutMapping("/{idProducts}")
     public Product update(@PathVariable Long idProducts,@RequestBody Product product){
