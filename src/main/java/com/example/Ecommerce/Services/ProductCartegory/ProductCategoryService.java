@@ -3,6 +3,7 @@ package com.example.Ecommerce.Services.ProductCartegory;
 import com.example.Ecommerce.Model.Product;
 import com.example.Ecommerce.Model.ProductCategory;
 import com.example.Ecommerce.Repository.ProductCategoryRepository;
+import com.example.Ecommerce.Repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,8 @@ public class ProductCategoryService implements IProductCategoryService{
 
     @Autowired
     ProductCategoryRepository productCategoryRepository;
+    @Autowired
+    ProductRepository productRepository;
 
 
     @Override
@@ -31,5 +34,7 @@ public class ProductCategoryService implements IProductCategoryService{
 
         return this.productCategoryRepository.save(productCategory);
     }
+
+
 
 }
