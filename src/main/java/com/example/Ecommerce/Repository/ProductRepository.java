@@ -9,12 +9,18 @@ import java.util.Optional;
 
 
 public interface ProductRepository extends JpaRepository<Product,Long> {
+
+    //===================  FIND TO ASIGNING ===================================
+    boolean existsByProductCategory_IdProductCategory(Long idProductCategory);
+    boolean existsByProductpictures_IdProductpicture(Long idProductpicture);
+
+    //=================  END FIND TO ASIGNING =================================
+
     boolean existsByIdProducts(Long idProducts);
-
     boolean existsByProductCategory_IdProductCategoryAndProductpictures_IdProductpicture(Long idProductCategory, Long idProductpicture);
-
     List<Product> findByNameProductsStartsWith(String nameProducts);
     List<Optional<Product>> findByCreatedatProduct(String createdatProduct);
+
 
 
 }
