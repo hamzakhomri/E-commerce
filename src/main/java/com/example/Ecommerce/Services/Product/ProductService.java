@@ -4,12 +4,13 @@ import com.example.Ecommerce.Model.Product;
 import com.example.Ecommerce.Model.ProductCategory;
 import com.example.Ecommerce.Model.Productpicture;
 import com.example.Ecommerce.Repository.ProductCategoryRepository;
+import com.example.Ecommerce.Repository.ProductPictureRepository;
 import com.example.Ecommerce.Repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityNotFoundException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -21,16 +22,38 @@ public class ProductService implements IProductService{
     ProductRepository productRepository;
     @Autowired
     ProductCategoryRepository productCategoryRepository;
+    @Autowired
+    ProductPictureRepository productPictureRepository;
 
 
     @Override
-    public Product assign(Long idProducts,Long idProductCategory){
+    public void assign(Long idProducts, Long idProductCategory){
         Product product = productRepository.findById(idProducts).orElse(null);
         ProductCategory product1=productCategoryRepository.findById(idProductCategory).orElse(null);
 
         product.setProductCategory(new ProductCategory(idProductCategory));
-        return productRepository.save(product);
+        productRepository.save(product);
     }
+
+
+    public Productpicture assign2(Long idProducts, Long idProductpicture) {
+
+        // find the Product object
+        Product product = productRepository.findById(idProductpicture)
+                .orElseThrow(() -> new EntityNotFoundException("Product with id " + idProducts + " not found"));
+        // find the Productpicture object
+        Productpicture productPicture = product.getProductpictures(idProductpicture).stream()
+                .orElseThrow(() -> new EntityNotFoundException("Product picture with id " + idProductpicture + " not found"));
+
+        // assign the Product object to the Productpicture object
+        productPicture.setProduct(product);
+
+        // save the Productpicture object
+        Productpicture savedProductPicture = productPictureRepository.save(productPicture);
+
+        return productPictureRepository.save(productPicture);
+    }
+
 
     public Product createProduct(Product product) {
         return productRepository.save(product);
