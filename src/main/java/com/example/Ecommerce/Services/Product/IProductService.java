@@ -8,16 +8,17 @@ import java.util.List;
 import java.util.Optional;
 
 public interface IProductService {
-    Product createProduct(Product product, Long idProductpicture);
+
+    Product assign(Long idProducts,Long idProductCategory);
+    Product createProduct(Product product);
     void deleteProductByID(Long idProducts);
     Product updateProduct(Long idProducts,Product product);
 
     //======================== GET ====================================//
-
     List<Product> GetAll();
     Product GetById(Long idProducts);
     List<Product> findByNameProductsStartsWith(String nameProducts);
     List<Optional<Product>> findByCreatedatProduct(String createdatProduct);
-
+    //====================== END GET ===================================//
 
 }
