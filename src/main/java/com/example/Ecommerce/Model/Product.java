@@ -1,5 +1,6 @@
 package com.example.Ecommerce.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.data.annotation.CreatedDate;
@@ -19,7 +20,19 @@ public class Product {
     private String createdatProduct;
     private String modifiedatProduct;
 
+    //==Relation With Product Category
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "idProductCategory")
+    @JsonIgnore
+    private ProductCategory productCategory;
+
+    //==Relation With Product Picture
+    @OneToMany(mappedBy = "product",cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<Productpicture>productpictures;
+
 //°°°°°°°°°°°GETTER AND SETTER °°°°°°°°°°°°°°°°°°°°°°°°°°
+
 
     public Long getIdProducts() {
         return idProducts;
@@ -53,7 +66,7 @@ public class Product {
         this.modifiedatProduct = modifiedatProduct;
     }
 
-    public ProductCategory getProductCategory() {
+    public ProductCategory getProductCategory(ProductCategory productCategory) {
         return productCategory;
     }
 
@@ -63,15 +76,7 @@ public class Product {
 
 // °°°°°°°END GETTER AND SETTER °°°°°°°°°°°°°°°°°°°°°°°°°
 
-    //==Relation With Product Category
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "idProductCategory")
-    private ProductCategory productCategory;
-
-    //==Relation With Product Picture
-    @OneToMany(mappedBy = "product",cascade = CascadeType.ALL)
-    private List<Productpicture>productpictures;
-
     public void setproductpictre(Productpicture productpicture) {
     }
+
 }
