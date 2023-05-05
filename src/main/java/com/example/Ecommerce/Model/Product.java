@@ -2,6 +2,7 @@ package com.example.Ecommerce.Model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.data.annotation.CreatedDate;
 
@@ -11,6 +12,7 @@ import java.util.List;
 @Data
 @Entity
 @DynamicUpdate
+@NoArgsConstructor
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,7 +35,9 @@ public class Product {
 
 //°°°°°°°°°°°GETTER AND SETTER °°°°°°°°°°°°°°°°°°°°°°°°°°
 
-
+    public Product(Long idProducts){
+        this.idProducts=idProducts;
+    }
     public Long getIdProducts() {
         return idProducts;
     }
@@ -73,10 +77,10 @@ public class Product {
     public void setProductCategory(ProductCategory productCategory) {
         this.productCategory = productCategory;
     }
+    public void setProductpictures(List<Productpicture> productpicture) {
+    }
+
 
 // °°°°°°°END GETTER AND SETTER °°°°°°°°°°°°°°°°°°°°°°°°°
-
-    public void setproductpictre(Productpicture productpicture) {
-    }
 
 }
