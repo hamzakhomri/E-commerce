@@ -3,8 +3,10 @@ package com.example.Ecommerce.Services.Product;
 import com.example.Ecommerce.Model.Product;
 import com.example.Ecommerce.Model.ProductCategory;
 import com.example.Ecommerce.Model.Productpicture;
+import com.example.Ecommerce.Repository.ProductCategoryRepository;
 import com.example.Ecommerce.Repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,26 +19,32 @@ import java.util.Optional;
 public class ProductService implements IProductService{
     @Autowired
     ProductRepository productRepository;
+    @Autowired
+    ProductCategoryRepository productCategoryRepository;
+
+
+    @Override
+    public Product assign(Long idProducts,Long idProductCategory){
+        Product product = productRepository.findById(idProducts).orElse(null);
+        ProductCategory product1=productCategoryRepository.findById(idProductCategory).orElse(null);
+
+        product.setProductCategory(new ProductCategory(idProductCategory));
+        return productRepository.save(product);
+    }
+
+    public Product createProduct(Product product) {
+        return productRepository.save(product);
+    }
+//=============== If EXISTED ==========================================
     public boolean IfExistProduct(Long idProducts){
         return productRepository.existsByIdProducts(idProducts);
     }
-    public boolean IfExixstProductPitureAndCategory(Long idProductCategory,Long idProductpicture){
-        return productRepository.existsByProductCategory_IdProductCategoryAndProductpictures_IdProductpicture(idProductCategory,idProductpicture);
+    public boolean IfExistProductPicture(Long idProductpicture){
+        return productRepository.existsByProductpictures_IdProductpicture(idProductpicture);}
+    public boolean IfExistsProductCategory(Long idProductCategory){
+        return productRepository.existsByProductCategory_IdProductCategory(idProductCategory);
     }
-    @Override
-    public Product createProduct(Product product, Long idProductpicture)
-    {
-        LocalDateTime dateTime = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
-
-        product.setCreatedatProduct(dateTime.format(formatter));
-        product.setModifiedatProduct(dateTime.format(formatter));
-        product.setproductpictre(new Productpicture(idProductpicture));
-        return this.productRepository.save(product);
-    }
-
-
-
+    //=============== End If EXISTED ==========================================
     @Override
     public void deleteProductByID(Long idProducts) {
         if (IfExistProduct(idProducts)){
