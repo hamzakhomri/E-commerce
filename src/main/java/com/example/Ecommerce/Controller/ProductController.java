@@ -1,10 +1,17 @@
 package com.example.Ecommerce.Controller;
 
 import com.example.Ecommerce.Model.Product;
+import com.example.Ecommerce.Model.ProductCategory;
 import com.example.Ecommerce.Model.Productpicture;
+import com.example.Ecommerce.Repository.ProductCategoryRepository;
+import com.example.Ecommerce.Repository.ProductRepository;
 import com.example.Ecommerce.Services.Product.IProductService;
+import com.example.Ecommerce.Services.Product.ProductService;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,15 +25,42 @@ import java.util.Optional;
 public class ProductController {
     @Autowired
     private IProductService iProductService;
+    @Autowired
+    private ProductService productService;
+    @Autowired
+    private ProductRepository productRepository;
+    @Autowired
+    private ProductCategoryRepository productCategoryRepository;
 
+
+
+
+
+
+    @PutMapping("/{idProducts}/categories/{idProductCategory}")
+    public ResponseEntity<Void> assignProductToCategory(@PathVariable Long idProducts,@PathVariable Long idProductCategory){
+        iProductService.assign(idProducts,idProductCategory);
+        return ResponseEntity.ok().build();
+    }
+
+
+
+    @PostMapping
+    public ResponseEntity<Product> createProduct(@RequestBody Product product) {
+        product.setCreatedatProduct(LocalDateTime.now().toString());
+        product.setModifiedatProduct(LocalDateTime.now().toString());
+        Product createdProduct = iProductService.createProduct(product);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdProduct);
+    }
     //======================== GET ====================================
     @GetMapping()
     public List<Product> GrtAll(){
         return iProductService.GetAll();
     }
     @GetMapping("/{idProducts}")
-    public Product GetById (@PathVariable Long idProducts){
-        return iProductService.GetById(idProducts);
+    public ResponseEntity<Product> getProductById(@PathVariable Long idProducts) {
+        Product product = productService.GetById(idProducts);
+        return ResponseEntity.ok(product);
     }
 
     @GetMapping("/filterbyname/{nameProducts}")
@@ -39,13 +73,6 @@ public class ProductController {
         return iProductService.findByCreatedatProduct(createdatProduct);
     }
     //======================== END GET ====================================
-
-    @PostMapping("picture/{idProductpicture}")
-    public Product create(@RequestBody Product product,@PathVariable Long idProductpicture){
-
-
-        return iProductService.createProduct(product,idProductpicture);
-    }
     @PutMapping("/{idProducts}")
     public Product update(@PathVariable Long idProducts,@RequestBody Product product){
         Product updateProduct =iProductService.updateProduct(idProducts,product);
