@@ -42,6 +42,11 @@ public class ProductController {
         iProductService.assign(idProducts,idProductCategory);
         return ResponseEntity.ok().build();
     }
+    @PutMapping("/{idProducts}/picture/{idProductpicture}")
+    public ResponseEntity<Void> assign2(@PathVariable Long idProducts,@PathVariable Long idProductpicture){
+        pr.assign2(idProducts,idProductpicture);
+        return ResponseEntity.ok().build();
+    }
 
 
 
