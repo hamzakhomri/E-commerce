@@ -1,6 +1,7 @@
 package com.example.Ecommerce.Model;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.data.annotation.CreatedDate;
 
@@ -10,6 +11,7 @@ import java.util.List;
 @Data
 @Entity
 @DynamicUpdate
+@NoArgsConstructor
 public class ProductCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,6 +24,10 @@ public class ProductCategory {
 
     @OneToMany(mappedBy = "productCategory",cascade = CascadeType.ALL,fetch = FetchType.LAZY )
     private List<Product> products;
+
+    public ProductCategory(Long idProductCategory) {
+        this.idProductCategory=idProductCategory;
+    }
 
     public Long getIdProductCategory() {
         return idProductCategory;
