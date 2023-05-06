@@ -10,10 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityNotFoundException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -61,7 +59,7 @@ public class ProductService implements IProductService{
     public Product createProduct(Product product) {
         return productRepository.save(product);
     }
-//=============== If EXISTED ==========================================
+    //=============== If EXISTED ==========================================
     public boolean IfExistProduct(Long idProducts){
         return productRepository.existsByIdProducts(idProducts);
     }
@@ -102,6 +100,7 @@ public class ProductService implements IProductService{
 
     //======================== GET ====================================
 
+
     @Override
     public List<Product> GetAll() {
         return productRepository.findAll();
@@ -120,6 +119,11 @@ public class ProductService implements IProductService{
             return finded;
         }
 
+    }
+
+    @Override
+    public List<Optional<Product>> findByProductCategory_NameProductCategoryStartsWith(String nameProductCategory) {
+        return productRepository.findByProductCategory_NameProductCategoryStartsWith(nameProductCategory);
     }
 
     @Override
