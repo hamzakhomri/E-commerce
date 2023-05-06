@@ -1,15 +1,11 @@
 package com.example.Ecommerce.Controller;
 
 import com.example.Ecommerce.Model.Product;
-import com.example.Ecommerce.Model.ProductCategory;
-import com.example.Ecommerce.Model.Productpicture;
 import com.example.Ecommerce.Repository.ProductCategoryRepository;
 import com.example.Ecommerce.Repository.ProductRepository;
 import com.example.Ecommerce.Services.Product.IProductService;
 import com.example.Ecommerce.Services.Product.ProductService;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -72,6 +68,12 @@ public class ProductController {
     public List<Product> GetProductBynameProducts(@PathVariable String nameProducts){
         return iProductService.findByNameProductsStartsWith(nameProducts);
     }
+
+    @GetMapping("/filtrecategoryname")
+    public List<Optional<Product>> getProductByCategoryName(String nameProductCategory){
+        return iProductService.findByProductCategory_NameProductCategoryStartsWith(nameProductCategory);
+    }
+
 
     @GetMapping("/filerbydatecreated")
     public  List<Optional<Product>> findByCreated_atProduct(@RequestParam(name = "createdatProduct") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) String createdatProduct){
