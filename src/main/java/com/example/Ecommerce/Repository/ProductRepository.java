@@ -21,6 +21,8 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
     List<Product> findByNameProductsStartsWith(String nameProducts);
     List<Optional<Product>> findByCreatedatProduct(String createdatProduct);
 
+    List<Optional<Product>> findByProductCategory_NameProductCategoryStartsWith(String nameProductCategory);
+
 
 
 }
