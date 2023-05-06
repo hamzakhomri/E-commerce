@@ -20,6 +20,8 @@ public interface IProductService {
     Product GetById(Long idProducts);
     List<Product> findByNameProductsStartsWith(String nameProducts);
     List<Optional<Product>> findByCreatedatProduct(String createdatProduct);
+    List<Optional<Product>> findByProductCategory_NameProductCategoryStartsWith(String nameProductCategory);
+
     //====================== END GET ===================================//
 
 }
