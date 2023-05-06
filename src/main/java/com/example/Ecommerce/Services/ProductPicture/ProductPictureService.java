@@ -16,8 +16,13 @@ public class ProductPictureService implements IProductPictureService{
         return productPictureRepository.save(productPicture);
     }
 
+
     @Override
     public List<Productpicture> GetAll() {
         return productPictureRepository.findAll();
+    }
+
+    public List<Productpicture> getProductPicturesByProductId(Long idProducts) {
+        return productPictureRepository.getProductPicturesByProductId(idProducts);
     }
 }
