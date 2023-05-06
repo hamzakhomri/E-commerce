@@ -28,16 +28,25 @@ public class Product {
     @JsonIgnore
     private ProductCategory productCategory;
 
+
+
     //==Relation With Product Picture
     @OneToMany(mappedBy = "product",cascade = CascadeType.ALL)
     @JsonIgnore
-    private List<Productpicture>productpictures;
+    private List<Productpicture> productpictures;
+
+    @ManyToOne
+    @JoinColumn(name = "product_id_products")
+    private Product product;
+    public Product(Product product, ProductCategory productCategory, List<Productpicture> productPictures) {
+        this.productpictures=productPictures;
+        this.productCategory=productCategory;
+        this.product=product;
+    }
+
 
 //°°°°°°°°°°°GETTER AND SETTER °°°°°°°°°°°°°°°°°°°°°°°°°°
 
-    public Product(Long idProducts){
-        this.idProducts=idProducts;
-    }
     public Long getIdProducts() {
         return idProducts;
     }
@@ -70,14 +79,25 @@ public class Product {
         this.modifiedatProduct = modifiedatProduct;
     }
 
-    public ProductCategory getProductCategory(ProductCategory productCategory) {
-        return productCategory;
+
+    public Product(Long idProducts){
+        this.idProducts=idProducts;
     }
 
+
+
+    public ProductCategory getProductCategory() {
+        return productCategory;
+    }
     public void setProductCategory(ProductCategory productCategory) {
         this.productCategory = productCategory;
     }
-    public void setProductpictures(List<Productpicture> productpicture) {
+    public List<Productpicture> getProductpictures() {
+        return productpictures;
+    }
+
+    public void setProductpictures(List<Productpicture> productpictures) {
+        this.productpictures = productpictures;
     }
 
 
