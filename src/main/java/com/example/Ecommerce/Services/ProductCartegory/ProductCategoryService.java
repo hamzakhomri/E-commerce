@@ -15,10 +15,6 @@ public class ProductCategoryService implements IProductCategoryService{
 
     @Autowired
     ProductCategoryRepository productCategoryRepository;
-    @Autowired
-    ProductRepository productRepository;
-
-
     @Override
     public List<ProductCategory> GetAll() {
         return productCategoryRepository.findAll();
@@ -36,5 +32,7 @@ public class ProductCategoryService implements IProductCategoryService{
     }
 
 
-
+    public ProductCategory getProductCategoryByProductId(Long idProducts) {
+        return this.productCategoryRepository.getProductCategoryByProductId(idProducts);
+    }
 }
