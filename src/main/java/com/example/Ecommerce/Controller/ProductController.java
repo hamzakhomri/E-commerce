@@ -39,12 +39,12 @@ public class ProductController {
 
     @PutMapping("/{idProducts}/categories/{idProductCategory}")
     public ResponseEntity<Void> assignProductToCategory(@PathVariable Long idProducts,@PathVariable Long idProductCategory){
-        iProductService.assign(idProducts,idProductCategory);
+        iProductService.assignToProductCtegory(idProducts,idProductCategory);
         return ResponseEntity.ok().build();
     }
     @PutMapping("/{idProducts}/picture/{idProductpicture}")
     public ResponseEntity<Void> assign2(@PathVariable Long idProducts,@PathVariable Long idProductpicture){
-        pr.assign2(idProducts,idProductpicture);
+        productService.assignToProductPicture(idProducts,idProductpicture);
         return ResponseEntity.ok().build();
     }
 
