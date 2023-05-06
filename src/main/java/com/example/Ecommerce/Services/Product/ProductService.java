@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityNotFoundException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,9 +26,28 @@ public class ProductService implements IProductService{
     @Autowired
     ProductPictureRepository productPictureRepository;
 
+    @Override
+    public void assignToProductPicture(Long idProducts, Long idProductpicture) {
+        Product oldproduct = productRepository.findById(idProducts).orElse(null);
+        Productpicture oldpicture = productPictureRepository.findById(idProductpicture).orElse(null);
+        oldpicture.setProduct(oldproduct);
+        if (oldproduct ==null)
+        {
+            System.out.println("Product Dont Existed");
+            if (oldpicture==null)
+            {
+                System.out.println("Picture Dont Existed");
+            }
+
+        }
+        assert oldpicture != null;
+        productPictureRepository.save(oldpicture);
+        productPictureRepository.findById(idProductpicture).orElse(null);
+    }
+
 
     @Override
-    public void assign(Long idProducts, Long idProductCategory){
+    public void assignToProductCtegory(Long idProducts, Long idProductCategory){
         Product product = productRepository.findById(idProducts).orElse(null);
         ProductCategory product1=productCategoryRepository.findById(idProductCategory).orElse(null);
 
@@ -36,23 +56,6 @@ public class ProductService implements IProductService{
     }
 
 
-    public Productpicture assign2(Long idProducts, Long idProductpicture) {
-
-        // find the Product object
-        Product product = productRepository.findById(idProductpicture)
-                .orElseThrow(() -> new EntityNotFoundException("Product with id " + idProducts + " not found"));
-        // find the Productpicture object
-        Productpicture productPicture = product.getProductpictures(idProductpicture).stream()
-                .orElseThrow(() -> new EntityNotFoundException("Product picture with id " + idProductpicture + " not found"));
-
-        // assign the Product object to the Productpicture object
-        productPicture.setProduct(product);
-
-        // save the Productpicture object
-        Productpicture savedProductPicture = productPictureRepository.save(productPicture);
-
-        return productPictureRepository.save(productPicture);
-    }
 
 
     public Product createProduct(Product product) {
