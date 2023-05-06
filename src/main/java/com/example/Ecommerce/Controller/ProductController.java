@@ -1,10 +1,15 @@
 package com.example.Ecommerce.Controller;
 
 import com.example.Ecommerce.Model.Product;
+import com.example.Ecommerce.Model.ProductCategory;
+import com.example.Ecommerce.Model.Productpicture;
 import com.example.Ecommerce.Repository.ProductCategoryRepository;
+import com.example.Ecommerce.Repository.ProductPictureRepository;
 import com.example.Ecommerce.Repository.ProductRepository;
 import com.example.Ecommerce.Services.Product.IProductService;
 import com.example.Ecommerce.Services.Product.ProductService;
+import com.example.Ecommerce.Services.ProductCartegory.ProductCategoryService;
+import com.example.Ecommerce.Services.ProductPicture.ProductPictureService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
@@ -27,9 +32,13 @@ public class ProductController {
     private ProductRepository productRepository;
     @Autowired
     private ProductCategoryRepository productCategoryRepository;
+    @Autowired
+    private ProductPictureRepository productPictureRepository;
+    @Autowired
+    private ProductCategoryService productCategoryService;
 
-
-
+    @Autowired
+    private ProductPictureService productPictureService;
 
 
 
@@ -54,9 +63,12 @@ public class ProductController {
         return ResponseEntity.status(HttpStatus.CREATED).body(createdProduct);
     }
     //======================== GET ====================================
-    @GetMapping()
-    public List<Product> GrtAll(){
-        return iProductService.GetAll();
+    @GetMapping("/product/{idProduct}")
+    public Product getProduct(@PathVariable Long idProducts) {
+        Product product = productService.getProductById(idProducts);
+        ProductCategory productCategory = productCategoryService.getProductCategoryByProductId(idProducts);
+        List<Productpicture> productPictures = productPictureService.getProductPicturesByProductId(idProducts);
+        return new Product(product, productCategory, productPictures);
     }
     @GetMapping("/{idProducts}")
     public ResponseEntity<Product> getProductById(@PathVariable Long idProducts) {
