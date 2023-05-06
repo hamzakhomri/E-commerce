@@ -1,7 +1,6 @@
 package com.example.Ecommerce.Services.Product;
 
 import com.example.Ecommerce.Model.Product;
-import com.example.Ecommerce.Model.Productpicture;
 
 import java.util.List;
 import java.util.Optional;
