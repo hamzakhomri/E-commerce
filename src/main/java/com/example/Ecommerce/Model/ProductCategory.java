@@ -6,6 +6,7 @@ import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -22,8 +23,8 @@ public class ProductCategory {
     private String createdProductCategory;
     private String modifiedProductCategory;
 
-    @OneToMany(mappedBy = "productCategory",cascade = CascadeType.ALL,fetch = FetchType.LAZY )
-    private List<Product> products;
+    @OneToMany(mappedBy = "productCategory",cascade = CascadeType.ALL)
+    private List<Product> products = new ArrayList<>();
 
     public ProductCategory(Long idProductCategory) {
         this.idProductCategory=idProductCategory;
