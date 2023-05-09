@@ -35,16 +35,6 @@ public class Product {
     @JsonIgnore
     private List<Productpicture> productpictures;
 
-    @ManyToOne
-    @JoinColumn(name = "product_id_products")
-    private Product product;
-    public Product(Product product, ProductCategory productCategory, List<Productpicture> productPictures) {
-        this.productpictures=productPictures;
-        this.productCategory=productCategory;
-        this.product=product;
-    }
-
-
 //°°°°°°°°°°°GETTER AND SETTER °°°°°°°°°°°°°°°°°°°°°°°°°°
 
     public Long getIdProducts() {
