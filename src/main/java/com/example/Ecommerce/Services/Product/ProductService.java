@@ -99,10 +99,6 @@ public class ProductService implements IProductService{
 
 
     //======================== GET ====================================
-    public Product getProductById(Long idProducts) {
-        return productRepository.findById(idProducts).orElse(null);
-    }
-
     @Override
     public List<Product> GetAll() {
         Product product = (Product) productRepository.findAll();
