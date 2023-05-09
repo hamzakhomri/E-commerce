@@ -7,6 +7,7 @@ import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -15,7 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Product {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private  Long idProducts;
     private String nameProducts;
     @CreatedDate()
@@ -23,17 +24,15 @@ public class Product {
     private String modifiedatProduct;
 
     //==Relation With Product Category
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idProductCategory")
     @JsonIgnore
     private ProductCategory productCategory;
 
-
-
     //==Relation With Product Picture
     @OneToMany(mappedBy = "product",cascade = CascadeType.ALL)
     @JsonIgnore
-    private List<Productpicture> productpictures;
+    private List<Productpicture> productpictures=new ArrayList<>();
 
 //°°°°°°°°°°°GETTER AND SETTER °°°°°°°°°°°°°°°°°°°°°°°°°°
 
@@ -79,15 +78,21 @@ public class Product {
     public ProductCategory getProductCategory() {
         return productCategory;
     }
-    public void setProductCategory(ProductCategory productCategory) {
-        this.productCategory = productCategory;
-    }
     public List<Productpicture> getProductpictures() {
         return productpictures;
     }
 
+    public void setProductCategory(ProductCategory productCategory) {
+        this.productCategory = productCategory;
+    }
+
+
     public void setProductpictures(List<Productpicture> productpictures) {
         this.productpictures = productpictures;
+    }
+
+    public Product get(Product product) {
+        return product;
     }
 
 
