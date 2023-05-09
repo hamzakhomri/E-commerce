@@ -40,8 +40,28 @@ public class ProductController {
     @Autowired
     private ProductPictureService productPictureService;
 
+    @GetMapping("/categorieswithproductsandpictures")
+    public List<ProductCategory> getCategoryAndPictureWithProduct() {
+        List<ProductCategory> productCategories = productCategoryRepository.findAll();
+        for (ProductCategory pc : productCategories) {
+            List<Product> products = pc.getProducts();
+            for (Product p : products) {
+                List<Productpicture> productPictures = p.getProductpictures();
+                p.setProductpictures(productPictures);
+            }
+            pc.setProducts(products);
+        }
+        return  productCategories;
+    }
 
-
+    @GetMapping("getcatpict/{idProducts}")
+    public ResponseEntity<Product> getProductWithCategoryAndPictures(@PathVariable Long idProducts) {
+        Product product = productService.getProductWithCategoryAndPicture(idProducts);
+        if (product == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(product);
+    }
     @PutMapping("/{idProducts}/categories/{idProductCategory}")
     public ResponseEntity<Void> assignProductToCategory(@PathVariable Long idProducts,@PathVariable Long idProductCategory){
         iProductService.assignToProductCtegory(idProducts,idProductCategory);
@@ -84,6 +104,10 @@ public class ProductController {
     @GetMapping("/filerbydatecreated")
     public  List<Optional<Product>> findByCreated_atProduct(@RequestParam(name = "createdatProduct") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) String createdatProduct){
         return iProductService.findByCreatedatProduct(createdatProduct);
+    }
+    @GetMapping()
+    public List<Product> getAll(){
+        return productService.GetAll();
     }
     //======================== END GET ====================================
     @PutMapping("/{idProducts}")
