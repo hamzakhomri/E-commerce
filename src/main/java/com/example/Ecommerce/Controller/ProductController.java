@@ -63,13 +63,7 @@ public class ProductController {
         return ResponseEntity.status(HttpStatus.CREATED).body(createdProduct);
     }
     //======================== GET ====================================
-    @GetMapping("/product/{idProduct}")
-    public Product getProduct(@PathVariable Long idProducts) {
-        Product product = productService.getProductById(idProducts);
-        ProductCategory productCategory = productCategoryService.getProductCategoryByProductId(idProducts);
-        List<Productpicture> productPictures = productPictureService.getProductPicturesByProductId(idProducts);
-        return new Product(product, productCategory, productPictures);
-    }
+
     @GetMapping("/{idProducts}")
     public ResponseEntity<Product> getProductById(@PathVariable Long idProducts) {
         Product product = productService.GetById(idProducts);
