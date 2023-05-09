@@ -32,7 +32,4 @@ public class ProductCategoryService implements IProductCategoryService{
     }
 
 
-    public ProductCategory getProductCategoryByProductId(Long idProducts) {
-        return this.productCategoryRepository.getProductCategoryByProductId(idProducts);
-    }
 }
