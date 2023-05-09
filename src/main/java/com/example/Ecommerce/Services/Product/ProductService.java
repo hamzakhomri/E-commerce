@@ -7,11 +7,13 @@ import com.example.Ecommerce.Repository.ProductCategoryRepository;
 import com.example.Ecommerce.Repository.ProductPictureRepository;
 import com.example.Ecommerce.Repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,6 +25,22 @@ public class ProductService implements IProductService{
     ProductCategoryRepository productCategoryRepository;
     @Autowired
     ProductPictureRepository productPictureRepository;
+
+    public Product getProductWithCategoryAndPicture(Long idProducts) {
+        //Product product = productRepository.findById(idProducts).orElse(null);
+        //ProductCategory productCategory = productCategoryRepository.findById(product.getProductCategory().getIdProductCategory()).orElse(null);
+        //Productpicture productpicture = product.getProductpictures().get(0); // Get the first Productpicture object from the list
+        //product.setProductCategory(productCategory);
+        //product.setProductpictures(Collections.singletonList(productpicture));
+        Product product = productRepository.findById(idProducts).orElse(null);
+        if (product != null) {
+            ProductCategory productCategory = productCategoryRepository.findById(product.getProductCategory().getIdProductCategory()).orElse(null);
+            List<Productpicture> productPictures = productPictureRepository.findByProduct(product.getIdProducts());
+            product.setProductCategory(productCategory);
+            product.setProductpictures(productPictures);
+        }
+        return product;
+    }
 
     @Override
     public void assignToProductPicture(Long idProducts, Long idProductpicture) {
@@ -101,8 +119,7 @@ public class ProductService implements IProductService{
     //======================== GET ====================================
     @Override
     public List<Product> GetAll() {
-        Product product = (Product) productRepository.findAll();
-        return (List<Product>) product;
+        return productRepository.findAll();
     }
 
     @Override
