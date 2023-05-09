@@ -22,7 +22,4 @@ public class ProductPictureService implements IProductPictureService{
         return productPictureRepository.findAll();
     }
 
-    public List<Productpicture> getProductPicturesByProductId(Long idProducts) {
-        return productPictureRepository.getProductPicturesByProductId(idProducts);
-    }
 }
