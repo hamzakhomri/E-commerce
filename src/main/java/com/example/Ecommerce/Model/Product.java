@@ -27,13 +27,35 @@ public class Product {
     //==Relation With Product Category
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idProductCategory")
-    @JsonIgnoreProperties
+    @JsonIgnoreProperties("hibernateLazyInitializer")
     private ProductCategory productCategory;
 
     //==Relation With Product Picture
     @OneToMany(mappedBy = "product",cascade = CascadeType.ALL)
-    @JsonIgnoreProperties
+    @JsonIgnoreProperties("hibernateLazyInitializer")
     private List<Productpicture> productpictures=new ArrayList<>();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //°°°°°°°°°°°GETTER AND SETTER °°°°°°°°°°°°°°°°°°°°°°°°°°
 
