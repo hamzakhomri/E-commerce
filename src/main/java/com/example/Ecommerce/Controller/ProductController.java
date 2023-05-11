@@ -54,14 +54,7 @@ public class ProductController {
         return  productCategories;
     }
 
-    @GetMapping("getcatpict/{idProducts}")
-    public ResponseEntity<Product> getProductWithCategoryAndPictures(@PathVariable Long idProducts) {
-        Product product = productService.getProductWithCategoryAndPicture(idProducts);
-        if (product == null) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(product);
-    }
+
     @PutMapping("/{idProducts}/categories/{idProductCategory}")
     public ResponseEntity<Void> assignProductToCategory(@PathVariable Long idProducts,@PathVariable Long idProductCategory){
         iProductService.assignToProductCtegory(idProducts,idProductCategory);
