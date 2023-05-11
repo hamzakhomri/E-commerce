@@ -11,9 +11,6 @@ import java.util.Optional;
 
 public interface ProductRepository extends JpaRepository<Product,Long> {
 
-    @Query("SELECT p FROM Product p JOIN FETCH p.category JOIN FETCH p.picture WHERE p.id = :id")
-    Optional<Product> findByIdWithCategoryAndPicture(@Param("id") Long id);
-
     //===================  FIND TO ASIGNING ===================================
     boolean existsByProductCategory_IdProductCategory(Long idProductCategory);
     boolean existsByProductpictures_IdProductpicture(Long idProductpicture);
