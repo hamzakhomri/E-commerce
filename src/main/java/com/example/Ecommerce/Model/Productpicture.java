@@ -5,7 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Data
 @Entity
@@ -21,23 +20,7 @@ public class Productpicture {
     @JoinColumn(name = "idProduct")
     @JsonIgnore
     private Product product;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    //°°°°°°°°°°°GETTER AND SETTER °°°°°°°°°°°°°°°°°°°°°°°°°°
     public String getNameProductpicture() {
         return nameProductpicture;
     }
