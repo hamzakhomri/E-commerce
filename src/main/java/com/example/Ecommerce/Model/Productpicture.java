@@ -1,5 +1,6 @@
 package com.example.Ecommerce.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -18,7 +19,23 @@ public class Productpicture {
     private String nameProductpicture;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idProduct")
+    @JsonIgnore
     private Product product;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     public String getNameProductpicture() {
