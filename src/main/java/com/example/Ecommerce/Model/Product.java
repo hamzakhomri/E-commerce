@@ -1,6 +1,5 @@
 package com.example.Ecommerce.Model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -34,27 +33,6 @@ public class Product {
     @OneToMany(mappedBy = "product",cascade = CascadeType.ALL)
     @JsonIgnoreProperties("hibernateLazyInitializer")
     private List<Productpicture> productpictures=new ArrayList<>();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 //°°°°°°°°°°°GETTER AND SETTER °°°°°°°°°°°°°°°°°°°°°°°°°°
@@ -95,8 +73,6 @@ public class Product {
     public Product(Long idProducts){
         this.idProducts=idProducts;
     }
-
-
 
     public ProductCategory getProductCategory() {
         return productCategory;
