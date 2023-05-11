@@ -1,5 +1,6 @@
 package com.example.Ecommerce.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicUpdate;
@@ -24,7 +25,30 @@ public class ProductCategory {
     private String modifiedProductCategory;
 
     @OneToMany(mappedBy = "productCategory",cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Product> products = new ArrayList<>();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public ProductCategory(Long idProductCategory) {
         this.idProductCategory=idProductCategory;
