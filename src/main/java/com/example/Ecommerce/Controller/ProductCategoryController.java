@@ -22,4 +22,12 @@ public class ProductCategoryController {
     public ProductCategory SavedProduct(@RequestBody ProductCategory productCategory){
         return iProductCategoryService.SaveProductCategory(productCategory);
     }
+    @DeleteMapping("/{idProductCategory}")
+    public void deleteProducCAtegory(@PathVariable Long idProductCategory) {
+        iProductCategoryService.deleteProductCategory(idProductCategory);
+    }
+    @PutMapping("/{idProductCategory}")
+    public ProductCategory UpdateProductCategroy(@PathVariable Long idProductCategory,@RequestBody ProductCategory productCategory){
+        return iProductCategoryService.UpdateProductCategory(idProductCategory,productCategory);
+    }
 }
