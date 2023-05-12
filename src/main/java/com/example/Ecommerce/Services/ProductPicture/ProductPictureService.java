@@ -15,7 +15,28 @@ public class ProductPictureService implements IProductPictureService{
     public Productpicture create(Productpicture productPicture) {
         return productPictureRepository.save(productPicture);
     }
+    @Override
+    public Productpicture Update(Long idProductpicture, Productpicture productpicture) {
+        Productpicture oldproductpicture=productPictureRepository.findById(idProductpicture).orElse(null);
+        if (oldproductpicture!=null){
+            productpicture.setIdProductpicture(idProductpicture);
+            return productPictureRepository.save(productpicture);
+        }else {
+            System.out.println(idProductpicture +" : Dont Existed");
+            return null;
+        }
+    }
 
+    @Override
+    public void deleteProductPicture(Long idProductpicture) {
+        Productpicture oldproductpicture=productPictureRepository.findById(idProductpicture).orElse(null);
+        if (oldproductpicture!=null) {
+            productPictureRepository.deleteById(idProductpicture);
+            productPictureRepository.findAll();
+        }else {
+            System.out.println(idProductpicture +" : Dont Existed");
+        }
+    }
 
     @Override
     public List<Productpicture> GetAll() {
