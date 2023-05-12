@@ -20,6 +20,7 @@ public class ProductPictureService implements IProductPictureService{
         Productpicture oldproductpicture=productPictureRepository.findById(idProductpicture).orElse(null);
         if (oldproductpicture!=null){
             productpicture.setIdProductpicture(idProductpicture);
+            productpicture.setProduct(oldproductpicture.getProduct());
             return productPictureRepository.save(productpicture);
         }else {
             System.out.println(idProductpicture +" : Dont Existed");
@@ -32,7 +33,6 @@ public class ProductPictureService implements IProductPictureService{
         Productpicture oldproductpicture=productPictureRepository.findById(idProductpicture).orElse(null);
         if (oldproductpicture!=null) {
             productPictureRepository.deleteById(idProductpicture);
-            productPictureRepository.findAll();
         }else {
             System.out.println(idProductpicture +" : Dont Existed");
         }
