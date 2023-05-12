@@ -94,6 +94,8 @@ public class ProductService implements IProductService{
             product.setModifiedatProduct(dateTime.format(formatter));
             product.setCreatedatProduct(old.getCreatedatProduct());
 
+            product.setProductCategory(old.getProductCategory());
+
             return productRepository.save(product);
         }else {
             return null;
