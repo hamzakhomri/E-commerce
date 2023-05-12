@@ -42,9 +42,10 @@ public class ProductController {
 
     @GetMapping("/categorieswithproductsandpictures")
     public List<ProductCategory> getCategoryAndPictureWithProduct() {
+        ProductCategory oldproductCategory= (ProductCategory) productCategoryRepository.findAll();
         List<ProductCategory> productCategories = productCategoryRepository.findAll();
         for (ProductCategory pc : productCategories) {
-            List<Product> products = pc.getProducts();
+            List<Product> products = pc.getProducts(oldproductCategory.getProducts());
             for (Product p : products) {
                 List<Productpicture> productPictures = p.getProductpictures();
                 p.setProductpictures(productPictures);
