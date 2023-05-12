@@ -65,8 +65,8 @@ public class ProductCategory {
         this.createdProductCategory = createdProductCategory;
     }
 
-    public List<Product> getProducts() {
-        return products;
+    public List<Product> getProducts(List<Product> products) {
+        return this.products;
     }
 
     public void setProducts(List<Product> products) {
