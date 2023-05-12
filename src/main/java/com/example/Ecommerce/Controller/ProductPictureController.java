@@ -3,6 +3,7 @@ package com.example.Ecommerce.Controller;
 import com.example.Ecommerce.Model.Productpicture;
 import com.example.Ecommerce.Services.ProductPicture.IProductPictureService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,5 +21,18 @@ public class ProductPictureController {
     @GetMapping()
     public List<Productpicture> getAll(){
         return iProductPictureService.GetAll();
+    }
+    @PutMapping("/{idProductpicture}")
+    public Productpicture update(@PathVariable Long idProductpicture,@RequestBody Productpicture productpicture){
+        Productpicture updateproductpicture=iProductPictureService.Update(idProductpicture,productpicture);
+        if (updateproductpicture!=null){
+            return ResponseEntity.ok(updateproductpicture).getBody();
+        }else {
+            return null;
+        }
+    }
+    @DeleteMapping("/{idProductpicture}")
+    public void deleteProductPicutre(@PathVariable Long idProductpicture){
+        iProductPictureService.deleteProductPicture(idProductpicture);
     }
 }
