@@ -1,9 +1,7 @@
 package com.example.Ecommerce.Services.ProductCartegory;
 
-import com.example.Ecommerce.Model.Product;
 import com.example.Ecommerce.Model.ProductCategory;
 import com.example.Ecommerce.Repository.ProductCategoryRepository;
-import com.example.Ecommerce.Repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +27,36 @@ public class ProductCategoryService implements IProductCategoryService{
         productCategory.setModifiedProductCategory(dateTime.format(formatter));
 
         return this.productCategoryRepository.save(productCategory);
+    }
+
+    @Override
+    public ProductCategory UpdateProductCategory(Long idProductCategory, ProductCategory productCategory) {
+        ProductCategory oldproductCategory=productCategoryRepository.findById(idProductCategory).orElse(null);
+        if (oldproductCategory!=null){
+            LocalDateTime dateTime = LocalDateTime.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+
+            productCategory.setModifiedProductCategory(dateTime.format(formatter));
+            productCategory.setCreatedProductCategory(oldproductCategory.getCreatedProductCategory());
+            productCategory.setIdProductCategory(idProductCategory);
+
+            productCategory.getProducts(oldproductCategory.getProducts(oldproductCategory.getProducts()));
+
+            return this.productCategoryRepository.save(productCategory);
+        }else {
+            System.out.println(idProductCategory +": Don't existed");
+            return null;
+        }
+    }
+
+    @Override
+    public void deleteProductCategory(Long idProductCategory) {
+        ProductCategory oldproductCategory=productCategoryRepository.findById(idProductCategory).orElse(null);
+        if (oldproductCategory!=null){
+            productCategoryRepository.deleteById(idProductCategory);
+        }else {
+            System.out.println(idProductCategory +": Don't existed");
+        }
     }
 
 
