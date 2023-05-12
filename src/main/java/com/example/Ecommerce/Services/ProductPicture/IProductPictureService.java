@@ -5,6 +5,8 @@ import com.example.Ecommerce.Model.Productpicture;
 import java.util.List;
 
 public interface IProductPictureService {
-    Productpicture create(Productpicture productpicture);
     List<Productpicture> GetAll();
+    Productpicture create(Productpicture productpicture);
+    Productpicture Update(Long idProductpicture,Productpicture productpicture);
+    void deleteProductPicture(Long idProductpicture);
 }
