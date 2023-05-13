@@ -19,7 +19,7 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
 
     boolean existsByIdProducts(Long idProducts);
     boolean existsByProductCategory_IdProductCategoryAndProductpictures_IdProductpicture(Long idProductCategory, Long idProductpicture);
-    List<Product> findByNameProductsStartsWith(String nameProducts);
+    List<Optional<Product>> findByNameProductsStartsWith(String nameProducts);
     List<Optional<Product>> findByCreatedatProduct(String createdatProduct);
 
     List<Optional<Product>> findByProductCategory_NameProductCategoryStartsWith(String nameProductCategory);
