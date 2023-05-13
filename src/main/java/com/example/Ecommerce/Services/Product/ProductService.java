@@ -110,7 +110,7 @@ public class ProductService implements IProductService{
     }
 
     @Override
-    public List<Product> findByNameProductsStartsWith(String nameProducts) {
+    public List<Optional<Product>> findByNameProductsStartsWith(String nameProducts) {
         return productRepository.findByNameProductsStartsWith(nameProducts);
     }
     @Override
