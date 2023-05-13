@@ -84,8 +84,8 @@ public class ProductController {
         return ResponseEntity.ok(product);
     }
 
-    @GetMapping("/filterbyname/{nameProducts}")
-    public List<Product> GetProductBynameProducts(@PathVariable String nameProducts){
+    @GetMapping("/filterbyname")
+    public List<Optional<Product>>GetProductBynameProducts( String nameProducts){
         return iProductService.findByNameProductsStartsWith(nameProducts);
     }
 
