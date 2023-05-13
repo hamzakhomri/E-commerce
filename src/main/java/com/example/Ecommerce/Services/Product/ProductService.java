@@ -35,7 +35,8 @@ public class ProductService implements IProductService{
         if (oldproduct ==null)
         {
             System.out.println("Product Dont Existed");
-            if (oldpicture==null)
+            if(oldpicture==null)
+
             {
                 System.out.println("Picture Dont Existed");
             }
@@ -60,6 +61,11 @@ public class ProductService implements IProductService{
 
 
     public Product createProduct(Product product) {
+        LocalDateTime dateTime = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");//("dd-MM-yyyy HH:mm:ss")
+
+        product.setCreatedatProduct(dateTime.format(formatter));
+        product.setModifiedatProduct(dateTime.format(formatter));//("dd-MM-yyyy HH:mm:ss")
         return productRepository.save(product);
     }
     //=============== If EXISTED ==========================================
@@ -85,9 +91,9 @@ public class ProductService implements IProductService{
     @Transactional
     @Override
     public Product updateProduct(Long idProducts, Product product) {
-        LocalDateTime dateTime = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
-        if (IfExistProduct(idProducts)){
+  if (IfExistProduct(idProducts)){
+            LocalDateTime dateTime = LocalDateTime.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");//("dd-MM-yyyy HH:mm:ss")
 
             Product old = productRepository.findById(idProducts).orElse(null);
             product.setIdProducts(idProducts);
