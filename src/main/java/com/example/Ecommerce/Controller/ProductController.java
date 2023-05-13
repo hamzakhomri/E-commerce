@@ -80,7 +80,7 @@ public class ProductController {
 
     @GetMapping("/{idProducts}")
     public ResponseEntity<Product> getProductById(@PathVariable Long idProducts) {
-        Product product = productService.GetById(idProducts);
+        Product product = iProductService.GetById(idProducts);
         return ResponseEntity.ok(product);
     }
 
@@ -101,7 +101,7 @@ public class ProductController {
     }
     @GetMapping()
     public List<Product> getAll(){
-        return productService.GetAll();
+        return iProductService.GetAll();
     }
     //======================== END GET ====================================
     @PutMapping("/{idProducts}")
