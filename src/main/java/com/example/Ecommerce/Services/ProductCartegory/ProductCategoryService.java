@@ -21,7 +21,7 @@ public class ProductCategoryService implements IProductCategoryService{
     @Override
     public ProductCategory SaveProductCategory(ProductCategory productCategory) {
         LocalDateTime dateTime = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");//("dd-MM-yyyy HH:mm:ss")
 
         productCategory.setCreatedProductCategory(dateTime.format(formatter));
         productCategory.setModifiedProductCategory(dateTime.format(formatter));
@@ -34,7 +34,7 @@ public class ProductCategoryService implements IProductCategoryService{
         ProductCategory oldproductCategory=productCategoryRepository.findById(idProductCategory).orElse(null);
         if (oldproductCategory!=null){
             LocalDateTime dateTime = LocalDateTime.now();
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");//("dd-MM-yyyy HH:mm:ss")
 
             productCategory.setModifiedProductCategory(dateTime.format(formatter));
             productCategory.setCreatedProductCategory(oldproductCategory.getCreatedProductCategory());
