@@ -17,7 +17,7 @@ public interface IProductService {
     //======================== GET ====================================//
     List<Product> GetAll();
     Product GetById(Long idProducts);
-    List<Product> findByNameProductsStartsWith(String nameProducts);
+    List<Optional<Product>> findByNameProductsStartsWith(String nameProducts);
     List<Optional<Product>> findByCreatedatProduct(String createdatProduct);
     List<Optional<Product>> findByProductCategory_NameProductCategoryStartsWith(String nameProductCategory);
 
