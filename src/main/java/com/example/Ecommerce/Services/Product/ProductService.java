@@ -29,32 +29,33 @@ public class ProductService implements IProductService{
 
     @Override
     public void assignToProductPicture(Long idProducts, Long idProductpicture) {
-        Product oldproduct = productRepository.findById(idProducts).orElse(null);
-        Productpicture oldpicture = productPictureRepository.findById(idProductpicture).orElse(null);
-        oldpicture.setProduct(oldproduct);
-        if (oldproduct ==null)
-        {
-            System.out.println("Product Dont Existed");
-            if(oldpicture==null)
+        Product product = productRepository.findById(idProducts).orElse(null);
+        Productpicture productpicture = productPictureRepository.findById(idProductpicture).orElse(null);
 
-            {
+        if (product ==null){
+            System.out.println("Product Dont Existed");
+            if (productpicture==null){
                 System.out.println("Picture Dont Existed");
             }
-
+        }else {
+            productpicture.setProduct(product);
+            productPictureRepository.save(productpicture);
         }
-        assert oldpicture != null;
-        productPictureRepository.save(oldpicture);
-        productPictureRepository.findById(idProductpicture).orElse(null);
     }
 
 
     @Override
     public void assignToProductCtegory(Long idProducts, Long idProductCategory){
         Product product = productRepository.findById(idProducts).orElse(null);
-        ProductCategory product1=productCategoryRepository.findById(idProductCategory).orElse(null);
-
-        product.setProductCategory(new ProductCategory(idProductCategory));
-        productRepository.save(product);
+        ProductCategory productCategory=productCategoryRepository.findById(idProductCategory).orElse(null);
+        if (product==null){
+            if (productCategory==null){
+                System.out.println("Don't Existed");
+            }
+        }else {
+            product.setProductCategory(new ProductCategory(idProductCategory));
+            productRepository.save(product);
+        }
     }
 
 
