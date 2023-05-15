@@ -22,7 +22,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/product")
-
+@CrossOrigin("http://localhost:8082/home")
 public class ProductController {
     @Autowired
     private IProductService iProductService;
@@ -115,7 +115,8 @@ public class ProductController {
     }
 
     @DeleteMapping("/{idProducts}")
-    public void deleteProduct(@PathVariable Long idProducts){
+    public String deleteProduct(@PathVariable Long idProducts){
         this.iProductService.deleteProductByID(idProducts);
+        return idProducts+": Deleted";
     }
 }
