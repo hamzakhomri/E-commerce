@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/productcategory")
+@CrossOrigin("http://localhost:8081/home")
 public class ProductCategoryController {
     @Autowired
     IProductCategoryService iProductCategoryService;
@@ -23,8 +24,9 @@ public class ProductCategoryController {
         return iProductCategoryService.SaveProductCategory(productCategory);
     }
     @DeleteMapping("/{idProductCategory}")
-    public void deleteProducCAtegory(@PathVariable Long idProductCategory) {
+    public String deleteProducCAtegory(@PathVariable Long idProductCategory) {
         iProductCategoryService.deleteProductCategory(idProductCategory);
+        return idProductCategory+" : Deleted Succefully";
     }
     @PutMapping("/{idProductCategory}")
     public ProductCategory UpdateProductCategroy(@PathVariable Long idProductCategory,@RequestBody ProductCategory productCategory){
