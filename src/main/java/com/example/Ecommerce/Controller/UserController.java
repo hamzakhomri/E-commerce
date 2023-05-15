@@ -44,8 +44,9 @@ public class UserController {
         return userService.getAllUer();
     }
     @DeleteMapping("/{IdUser}")//Done
-    public void deteleUser(@PathVariable(name = "IdUser") Long IdUser){
+    public String deteleUser(@PathVariable(name = "IdUser") Long IdUser){
         this.userService.deleteUser(IdUser);
+        return IdUser+": Deleted";
     }
 
 }
