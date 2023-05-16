@@ -34,6 +34,6 @@ public class ProductPictureController {
     @DeleteMapping("/{idProductpicture}")
     public String deleteProductPicutre(@PathVariable Long idProductpicture){
         iProductPictureService.deleteProductPicture(idProductpicture);
-        return idProductpicture+": Deleted";
+        return idProductpicture+": Deleted";s
     }
 }
