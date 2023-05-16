@@ -28,7 +28,7 @@ public class UserController {
     @GetMapping("/filter")
     public List<Optional<Userr>> getUserBynameUser(@RequestParam("nameUser") String nameUser){
         return userService.getOneBynameUser(nameUser);
-    }
+    }s
     @GetMapping("/{IdUser}")//'Done
     public Userr GetUserByID(@PathVariable("IdUser")Long IdUser){
         return userService.getOneUserByID(IdUser);
