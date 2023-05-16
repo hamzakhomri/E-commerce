@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
-
+s
+@CrossOrigin
 @RestController
 @RequestMapping("/productcategory")
 public class ProductCategoryController {
@@ -19,7 +19,7 @@ public class ProductCategoryController {
         return iProductCategoryService.GetAll();
     }
 
-    @CrossOrigin
+
     @PostMapping()
     public ProductCategory SavedProduct(@RequestBody ProductCategory productCategory){
         return iProductCategoryService.SaveProductCategory(productCategory);
