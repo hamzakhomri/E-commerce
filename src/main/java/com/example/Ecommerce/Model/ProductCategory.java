@@ -18,7 +18,7 @@ public class ProductCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idProductCategory;
-    private String nameProductCategory;s
+    private String nameProductCategory;
 
     @CreatedDate()
     private String createdProductCategory;
