@@ -25,7 +25,6 @@ public class UserController {
         return userService.update(IdUser,userr);
     }
 
-
     @GetMapping("/filter")
     public List<Optional<Userr>> getUserBynameUser(@RequestParam("nameUser") String nameUser){
         return userService.getOneBynameUser(nameUser);
