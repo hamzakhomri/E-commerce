@@ -18,6 +18,7 @@ public class ProductPictureController {
     public Productpicture create(@RequestBody Productpicture productpicture){
         return iProductPictureService.create(productpicture);
     }
+
     @GetMapping()
     public List<Productpicture> getAll(){
         return iProductPictureService.GetAll();
