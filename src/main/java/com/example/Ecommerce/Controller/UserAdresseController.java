@@ -23,7 +23,8 @@ public class UserAdresseController {
     public Useradresse GetOneById(@PathVariable(name = "idUserAdresse")Long idUserAdresse){
         return iUserAdresseService.getOneByID(idUserAdresse);
     }
-    @GetMapping("/getbyname/{nameUser}")
+    @GetMapping("/get" +
+            "byname/{nameUser}")
     private List<Optional<Useradresse>>getBynameUser(@PathVariable(name = "nameUser") String nameUser){
         return iUserAdresseService.findByUserr_NameUserStartsWith(nameUser);
     }
