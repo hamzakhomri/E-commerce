@@ -15,7 +15,6 @@ import java.util.List;
 @DynamicUpdate
 @NoArgsConstructor
 public class Product {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private  Long idProducts;
