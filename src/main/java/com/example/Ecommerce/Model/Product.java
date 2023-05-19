@@ -22,7 +22,6 @@ public class Product {
     @CreatedDate()
     private String createdatProduct;
     private String modifiedatProduct;
-
     //==Relation With Product Category
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idProductCategory")
