@@ -10,7 +10,6 @@ import javax.persistence.*;
 @Entity
 @NoArgsConstructor
 
-
 public class Productpicture {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
