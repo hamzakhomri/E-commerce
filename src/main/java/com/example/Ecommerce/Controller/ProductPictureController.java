@@ -13,7 +13,6 @@ import java.util.List;
 public class ProductPictureController {
     @Autowired
     IProductPictureService iProductPictureService;
-
     @PostMapping()
     public Productpicture create(@RequestBody Productpicture productpicture){
         return iProductPictureService.create(productpicture);
