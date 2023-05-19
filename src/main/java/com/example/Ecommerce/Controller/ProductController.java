@@ -94,7 +94,6 @@ public class ProductController {
         return iProductService.findByProductCategory_NameProductCategoryStartsWith(nameProductCategory);
     }
 
-
     @GetMapping("/filerbydatecreated")
     public  List<Optional<Product>> findByCreated_atProduct(@RequestParam(name = "createdatProduct") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) String createdatProduct){
         return iProductService.findByCreatedatProduct(createdatProduct);
