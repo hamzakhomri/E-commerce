@@ -18,7 +18,6 @@ public class UserAdresseController {
     public List<Useradresse> getAll(){
         return iUserAdresseService.getlAll();
     }
-
     @GetMapping("/{idUserAdresse}")
     public Useradresse GetOneById(@PathVariable(name = "idUserAdresse")Long idUserAdresse){
         return iUserAdresseService.getOneByID(idUserAdresse);
