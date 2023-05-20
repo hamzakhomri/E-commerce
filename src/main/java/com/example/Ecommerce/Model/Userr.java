@@ -24,8 +24,6 @@ public class Userr {
     private String adresseIP;
     private String adresseMAC;
 
-
-
     @OneToOne(mappedBy = "userr",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private Useradresse userAdresse;
 
