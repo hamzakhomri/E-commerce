@@ -67,8 +67,6 @@ public class ProductController {
         return ResponseEntity.ok().build();
     }
 
-
-
     @PostMapping
     public ResponseEntity<Product> createProduct(@RequestBody Product product) {
         product.setCreatedatProduct(LocalDateTime.now().toString());
