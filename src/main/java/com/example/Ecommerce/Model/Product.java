@@ -35,7 +35,6 @@ public class Product {
 
 
 //°°°°°°°°°°°GETTER AND SETTER °°°°°°°°°°°°°°°°°°°°°°°°°°
-
     public Long getIdProducts() {
         return idProducts;
     }
