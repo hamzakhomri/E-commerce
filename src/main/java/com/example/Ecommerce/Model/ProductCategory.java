@@ -28,7 +28,6 @@ public class ProductCategory {
     @JsonIgnore
     private List<Product> products = new ArrayList<>();
 
-
     //°°°°°°°°°°°GETTER AND SETTER °°°°°°°°°°°°°°°°°°°°°°°°°°
     public ProductCategory(Long idProductCategory) {
         this.idProductCategory=idProductCategory;
