@@ -25,7 +25,6 @@ public class Productpicture {
     public Long getIdProductPicture(){
         return this.idProductpicture;
     }
-
     public void setIdProductpicture(Long idProductpicture) {
         this.idProductpicture = idProductpicture;
     }
