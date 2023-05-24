@@ -12,7 +12,6 @@ import java.util.List;
 public class ProductCategoryController {
     @Autowired
     IProductCategoryService iProductCategoryService;
-
     @GetMapping()
     public List<ProductCategory> Getall(){
         return iProductCategoryService.GetAll();
