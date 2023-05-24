@@ -55,7 +55,6 @@ public class ProductController {
         return  productCategories;
     }
 
-
     @PutMapping("/{idProducts}/categories/{idProductCategory}")
     public ResponseEntity<Void> assignProductToCategory(@PathVariable Long idProducts,@PathVariable Long idProductCategory){
         iProductService.assignToProductCtegory(idProducts,idProductCategory);
