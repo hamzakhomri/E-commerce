@@ -19,7 +19,6 @@ public class UserController {
     private IUserService userService;
     @Autowired
     private IUserAdresseService userAdresseService;
-
     @PutMapping("/{IdUser}")
     public Userr UpdateUser(@PathVariable Long IdUser,@RequestBody Userr userr){
         return userService.update(IdUser,userr);
