@@ -27,7 +27,6 @@ public class ProductCategory {
     @OneToMany(mappedBy = "productCategory",cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Product> products = new ArrayList<>();
-
     //°°°°°°°°°°°GETTER AND SETTER °°°°°°°°°°°°°°°°°°°°°°°°°°
     public ProductCategory(Long idProductCategory) {
         this.idProductCategory=idProductCategory;
