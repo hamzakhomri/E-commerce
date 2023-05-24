@@ -19,6 +19,10 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private  Long idProducts;
     private String nameProducts;
+    private Double priceProducts;
+    private Integer qteProducts;
+
+
     @CreatedDate()
     private String createdatProduct;
     private String modifiedatProduct;
