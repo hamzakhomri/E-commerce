@@ -23,7 +23,6 @@ public class ProductCategory {
     @CreatedDate()
     private String createdProductCategory;
     private String modifiedProductCategory;
-
     @OneToMany(mappedBy = "productCategory",cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Product> products = new ArrayList<>();
