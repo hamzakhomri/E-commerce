@@ -30,7 +30,6 @@ public class UserAdresseController {
     public Useradresse update(@PathVariable Long idUserAdresse,@RequestBody Useradresse useradresse){
         return iUserAdresseService.update(idUserAdresse,useradresse);
     }
-
     @PostMapping()
     public Useradresse save(@RequestBody Useradresse useradresse){
         return iUserAdresseService.create(useradresse);
