@@ -23,7 +23,6 @@ public class Userr {
     private LocalDateTime created_atUser;
     private String adresseIP;
     private String adresseMAC;
-
     @OneToOne(mappedBy = "userr",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private Useradresse userAdresse;
 
