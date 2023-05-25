@@ -22,7 +22,6 @@ public class Product {
     private Double priceProducts;
     private Integer qteProducts;
 
-
     @CreatedDate()
     private String createdatProduct;
     private String modifiedatProduct;
