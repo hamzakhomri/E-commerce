@@ -33,4 +33,5 @@ public class ProductPictureController {
         iProductPictureService.deleteProductPicture(idProductpicture);
         return idProductpicture+": Deleted";
     }
+
 }
