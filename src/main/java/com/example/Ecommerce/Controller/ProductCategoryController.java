@@ -17,7 +17,6 @@ public class ProductCategoryController {
         return iProductCategoryService.GetAll();
     }
 
-
     @PostMapping()
     public ProductCategory SavedProduct(@RequestBody ProductCategory productCategory){
         return iProductCategoryService.SaveProductCategory(productCategory);
