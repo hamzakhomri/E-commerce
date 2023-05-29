@@ -2,7 +2,6 @@ package com.example.Ecommerce.Model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
-
 import javax.persistence.*;
 @Data
 @Entity
