@@ -3,7 +3,6 @@ package com.example.Ecommerce.Model;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
-
 import javax.persistence.*;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
