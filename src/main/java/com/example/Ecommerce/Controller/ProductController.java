@@ -54,23 +54,19 @@ public class ProductController {
         }
         return  productCategories;
     }
-    @PutMapping("/{idProducts}/categories/{idProductCategory}")
-    public ResponseEntity<Void> assignProductToCategory(@PathVariable Long idProducts,@PathVariable Long idProductCategory){
-        iProductService.assignToProductCtegory(idProducts,idProductCategory);
-        return ResponseEntity.ok().build();
-    }
+
     @PutMapping("/{idProducts}/picture/{idProductpicture}")
     public ResponseEntity<Void> assign2(@PathVariable Long idProducts,@PathVariable Long idProductpicture){
         productService.assignToProductPicture(idProducts,idProductpicture);
         return ResponseEntity.ok().build();
     }
 
-    @PostMapping
-    public ResponseEntity<Product> createProduct(@RequestBody Product product) {
+    @PostMapping("/{idProductCategory}")
+    public ResponseEntity<Product> createProduct(@RequestBody Product product, @PathVariable("idProductCategory") Long idProductCategory) {
         product.setCreatedatProduct(LocalDateTime.now().toString());
         product.setModifiedatProduct(LocalDateTime.now().toString());
-        Product createdProduct = iProductService.createProduct(product);
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdProduct);
+        Product createdProduct = productService.createProduct(product, idProductCategory);
+        return ResponseEntity.ok(createdProduct);
     }
     //======================== GET ====================================
 
