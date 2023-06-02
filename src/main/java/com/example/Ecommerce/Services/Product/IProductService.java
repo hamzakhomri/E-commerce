@@ -6,11 +6,14 @@ import java.util.List;
 import java.util.Optional;
 
 public interface IProductService {
-
-    void assignToProductCtegory(Long idProducts, Long idProductCategory);
     void assignToProductPicture(Long idProducts, Long idProductpicture);
     //Productpicture assign2(Long idProducts, Long idProductpicture);
-    Product createProduct(Product product);
+
+
+
+    void assignToProductCtegory(Product product , Long idProductCategory);
+
+    Product createProduct(Product product ,Long idProductCategory);
     void deleteProductByID(Long idProducts);
     Product updateProduct(Long idProducts,Product product);
 
