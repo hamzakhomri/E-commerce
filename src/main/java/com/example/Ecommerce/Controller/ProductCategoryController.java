@@ -30,4 +30,5 @@ public class ProductCategoryController {
     public ProductCategory UpdateProductCategroy(@PathVariable Long idProductCategory,@RequestBody ProductCategory productCategory){
         return iProductCategoryService.UpdateProductCategory(idProductCategory,productCategory);
     }
+
 }
