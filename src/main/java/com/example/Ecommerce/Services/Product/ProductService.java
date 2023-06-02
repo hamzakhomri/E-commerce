@@ -44,31 +44,36 @@ public class ProductService implements IProductService{
     }
 
 
-    @Override
-    public void assignToProductCtegory(Long idProducts, Long idProductCategory){
-        Product product = productRepository.findById(idProducts).orElse(null);
-        ProductCategory productCategory=productCategoryRepository.findById(idProductCategory).orElse(null);
-        if (product==null){
-            if (productCategory==null){
-                System.out.println("Don't Existed");
-            }
-        }else {
-            product.setProductCategory(new ProductCategory(idProductCategory));
-            productRepository.save(product);
+    public void assignToProductCtegory(Product product, Long idProductCategory) {
+        ProductCategory productCategory = productCategoryRepository.findById(idProductCategory).orElse(null);
+
+        if (productCategory == null) {
+            System.out.println("Product category doesn't exist.");
+        } else {
+            product.setProductCategory(productCategory);
         }
     }
 
 
 
 
-    public Product createProduct(Product product) {
+    public Product createProduct(Product product, Long idProductCategory) {
         LocalDateTime dateTime = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");//("dd-MM-yyyy HH:mm:ss")
-
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         product.setCreatedatProduct(dateTime.format(formatter));
-        product.setModifiedatProduct(dateTime.format(formatter));//("dd-MM-yyyy HH:mm:ss")
-        return productRepository.save(product);
+        product.setModifiedatProduct(dateTime.format(formatter));
+        ProductCategory productCategory = productCategoryRepository.findById(idProductCategory).orElse(null);
+        if (productCategory == null) {
+            System.out.println("Product category doesn't exist.");
+            return null;
+        }
+        else {
+            assignToProductCtegory(product, idProductCategory);
+
+            return productRepository.save(product);
+        }
     }
+
     //=============== If EXISTED ==========================================
     public boolean IfExistProduct(Long idProducts){
         return productRepository.existsByIdProducts(idProducts);
@@ -140,5 +145,6 @@ public class ProductService implements IProductService{
     public Product GetById(Long idProducts) {
         return productRepository.findById(idProducts).orElse(null);
     }
+
 
 }
