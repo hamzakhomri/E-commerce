@@ -61,7 +61,7 @@ public class ProductController {
         return ResponseEntity.ok().build();
     }
 
-    @PostMapping("/{idProductCategory}")
+    @PostMapping("/category/{idProductCategory}")
     public ResponseEntity<Product> createProduct(@RequestBody Product product, @PathVariable("idProductCategory") Long idProductCategory) {
         product.setCreatedatProduct(LocalDateTime.now().toString());
         product.setModifiedatProduct(LocalDateTime.now().toString());
