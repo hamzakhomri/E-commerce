@@ -12,7 +12,6 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
     boolean existsByProductpictures_IdProductpicture(Long idProductpicture);
 
     //=================  END FIND TO ASIGNING =================================
-
     boolean existsByIdProducts(Long idProducts);
     List<Optional<Product>> findByNameProductsStartsWith(String nameProducts);
     List<Optional<Product>> findByCreatedatProduct(String createdatProduct);
