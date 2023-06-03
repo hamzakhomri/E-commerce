@@ -54,7 +54,26 @@ public class ProductService implements IProductService{
         }
     }
 
+    @Transactional
+    @Override
+    public Product updateProduct(Long idProducts, Product product ,Long idProductCategory) {
+        if (IfExistProduct(idProducts)){
+            LocalDateTime dateTime = LocalDateTime.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");//("dd-MM-yyyy HH:mm:ss")
 
+            Product old = productRepository.findById(idProducts).orElse(null);
+            product.setIdProducts(idProducts);
+            product.setModifiedatProduct(dateTime.format(formatter));
+            product.setCreatedatProduct(old.getCreatedatProduct());
+            product.setProductCategory(old.getProductCategory());
+            assignToProductCtegory(product, idProductCategory);
+
+            return productRepository.save(product);
+        }else {
+            System.out.println("Product Don't Existed");
+            return null;
+        }
+    }
 
 
     public Product createProduct(Product product, Long idProductCategory) {
@@ -94,25 +113,7 @@ public class ProductService implements IProductService{
 
     }
 
-    @Transactional
-    @Override
-    public Product updateProduct(Long idProducts, Product product) {
-  if (IfExistProduct(idProducts)){
-            LocalDateTime dateTime = LocalDateTime.now();
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");//("dd-MM-yyyy HH:mm:ss")
 
-            Product old = productRepository.findById(idProducts).orElse(null);
-            product.setIdProducts(idProducts);
-            product.setModifiedatProduct(dateTime.format(formatter));
-            product.setCreatedatProduct(old.getCreatedatProduct());
-            product.setProductCategory(old.getProductCategory());
-
-            return productRepository.save(product);
-        }else {
-            System.out.println("Product Don't Existed");
-            return null;
-        }
-    }
 
 
     //======================== GET ====================================
