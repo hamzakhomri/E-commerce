@@ -97,9 +97,9 @@ public class ProductController {
     }
 
     //======================== END GET ====================================
-    @PutMapping("/{idProducts}")
-    public Product update(@PathVariable Long idProducts,@RequestBody Product product){
-        Product updateProduct =iProductService.updateProduct(idProducts,product);
+    @PutMapping("/{idProducts}/category/{idProductCategory}")
+    public Product update(@PathVariable Long idProducts,@RequestBody Product product, @PathVariable Long idProductCategory){
+        Product updateProduct =iProductService.updateProduct(idProducts,product,idProductCategory);
         if (updateProduct!=null){
             return ResponseEntity.ok(updateProduct).getBody();
         }else {
