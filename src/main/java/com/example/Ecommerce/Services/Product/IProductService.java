@@ -14,8 +14,11 @@ public interface IProductService {
     void assignToProductCtegory(Product product , Long idProductCategory);
 
     Product createProduct(Product product ,Long idProductCategory);
+    Product updateProduct(Long idProducts,Product product ,Long idProductCategory);
+
+
+
     void deleteProductByID(Long idProducts);
-    Product updateProduct(Long idProducts,Product product);
 
     //======================== GET ====================================//
     List<Product> GetAll();
