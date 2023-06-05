@@ -7,5 +7,4 @@ import java.util.Optional;
 public interface UserAdresseRepository extends JpaRepository<Useradresse,Long> {
     List<Optional<Useradresse>> findByUserr_NameUserStartsWith(String nameUser);
     boolean existsByUserr_IdUser(Long idUser);
-
 }
