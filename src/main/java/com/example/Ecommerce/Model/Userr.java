@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import javax.persistence.*;
+
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
