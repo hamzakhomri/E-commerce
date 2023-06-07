@@ -14,11 +14,24 @@ public class ProductPictureController {
     @Autowired
     IProductPictureService iProductPictureService;
     @PostMapping()
-    public Productpicture create(@RequestParam("file") MultipartFile file) {
+    public Productpicture create(@RequestParam("file") MultipartFile file) throws Exception{
         if (!file.isEmpty()) {
             try {
                 byte[] fileContent = file.getBytes();
+                Productpicture productpicture = new Productpicture();
+
                 System.out.println("Picture upload successful.");
+                System.out.println("file.getOriginalFilename() : "+file.getOriginalFilename());
+                System.out.println("file.getName() :"+file.getName());
+                System.out.println("file.getContentType() :" +file.getContentType());
+                System.out.println("file.getsize() :"+file.getSize());
+
+
+                //=====THIS FOR COPY PICTURE ON BACK UP
+                //String Path_Directory ="../PicturesProducts";
+                //Files.copy(file.getInputStream(), Paths.get(Path_Directory+File.separator+file.getOriginalFilename()),StandardCopyOption.REPLACE_EXISTING);
+                //System.out.println("CopySucces");
+
                 return iProductPictureService.create(fileContent);
             } catch (Exception e) {
                 System.out.println("Failed to upload the picture.");
