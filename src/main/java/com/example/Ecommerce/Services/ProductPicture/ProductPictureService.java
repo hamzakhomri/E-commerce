@@ -12,8 +12,11 @@ public class ProductPictureService implements IProductPictureService{
     @Autowired
     ProductPictureRepository productPictureRepository;
 
-    public Productpicture create(Productpicture productPicture) {
-        return productPictureRepository.save(productPicture);
+    @Override
+    public Productpicture create(byte[] picture) {
+        Productpicture productpicture = new Productpicture();
+        productpicture.setPicture(picture);
+        return productPictureRepository.save(productpicture);
     }
     @Override
     public Productpicture Update(Long idProductpicture, Productpicture productpicture) {
@@ -21,6 +24,7 @@ public class ProductPictureService implements IProductPictureService{
         if (oldproductpicture!=null){
             productpicture.setIdProductpicture(idProductpicture);
             productpicture.setProduct(oldproductpicture.getProduct());
+
             return productPictureRepository.save(productpicture);
         }else {
             System.out.println(idProductpicture +" : Dont Existed");
