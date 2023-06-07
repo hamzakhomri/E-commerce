@@ -4,6 +4,8 @@ import com.example.Ecommerce.Services.ProductPicture.IProductPictureService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
 import java.util.List;
 
 @RestController
@@ -12,9 +14,23 @@ public class ProductPictureController {
     @Autowired
     IProductPictureService iProductPictureService;
     @PostMapping()
-    public Productpicture create(@RequestBody Productpicture productpicture){
-        return iProductPictureService.create(productpicture);
+    public Productpicture create(@RequestParam("file") MultipartFile file) {
+        if (!file.isEmpty()) {
+            try {
+                byte[] fileContent = file.getBytes();
+                System.out.println("Picture upload successful.");
+                return iProductPictureService.create(fileContent);
+            } catch (Exception e) {
+                System.out.println("Failed to upload the picture.");
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("No picture selected for upload.");
+        }
+        return null;
     }
+
+
     @GetMapping()
     public List<Productpicture> getAll(){
         return iProductPictureService.GetAll();
