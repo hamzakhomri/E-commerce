@@ -12,14 +12,24 @@ public class Productpicture {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idProductpicture;
-    private String nameProductpicture;
+
+
+
+    @Lob
+    private byte[] picture;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idProduct")
     @JsonIgnore
     private Product product;
     //°°°°°°°°°°°GETTER AND SETTER °°°°°°°°°°°°°°°°°°°°°°°°°°
-    public String getNameProductpicture() {
-        return nameProductpicture;
+
+
+    public byte[] getPicture() {
+        return picture;
+    }
+
+    public void setPicture(byte[] picture) {
+        this.picture = picture;
     }
     public Long getIdProductPicture(){
         return this.idProductpicture;
