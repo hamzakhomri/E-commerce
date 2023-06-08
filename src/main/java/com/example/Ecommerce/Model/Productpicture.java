@@ -3,6 +3,8 @@ package com.example.Ecommerce.Model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
+
 import javax.persistence.*;
 
 @Data
@@ -15,9 +17,12 @@ public class Productpicture {
     @Lob
     private byte[] picture;
     private Long sizePicture;
-
-
     private String namePicture;
+
+
+
+    @CreatedDate()
+    private String createdatPicture;
 
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -42,7 +47,8 @@ public class Productpicture {
     public void setSizePicture(Long sizePicture) { this.sizePicture = sizePicture; }
     public String getNamePicture() { return namePicture; }
     public void setNamePicture(String namePicture) { this.namePicture = namePicture; }
-
+    public String getCreatedatPicture() { return createdatPicture; }
+    public void setCreatedatPicture(String createdatPicture) { this.createdatPicture = createdatPicture; }
 
 
 }
