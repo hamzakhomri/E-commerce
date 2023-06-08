@@ -18,9 +18,6 @@ public class Productpicture {
     private byte[] picture;
     private Long sizePicture;
     private String namePicture;
-
-
-
     @CreatedDate()
     private String createdatPicture;
 
