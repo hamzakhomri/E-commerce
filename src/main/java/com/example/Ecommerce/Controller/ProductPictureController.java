@@ -10,6 +10,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @RestController
@@ -26,6 +28,8 @@ public class ProductPictureController {
         String filename = file.getOriginalFilename();
         String extension = filename.substring(filename.lastIndexOf(".") + 1);
         String extensionname = filename.substring(0, filename.lastIndexOf("."));
+        LocalDateTime dateTime = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");//("dd-MM-yyyy HH:mm:ss")
 
         if (!file.isEmpty()) {
             try {
@@ -44,6 +48,7 @@ public class ProductPictureController {
                         productpicture.setNamePicture(extensionname+"_"+sizeP);
                         productpicture.setPicture(fileContent);
                         productpicture.setSizePicture(sizeP);
+                        productpicture.setCreatedatPicture(dateTime.format(formatter));
 
                         return iProductPictureService.create(productpicture);
                 }
