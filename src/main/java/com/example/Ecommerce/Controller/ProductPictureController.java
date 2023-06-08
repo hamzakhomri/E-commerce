@@ -6,6 +6,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 
 @RestController
@@ -14,43 +18,39 @@ public class ProductPictureController {
     @Autowired
     IProductPictureService iProductPictureService;
     @PostMapping()
-    public Productpicture create(Productpicture productpicture,@RequestParam("file") MultipartFile file) throws Exception{
+    public Productpicture create(Productpicture productpicture,@RequestParam("file") MultipartFile file) throws Exception
+    {
         byte[] fileContent = file.getBytes();
         Long sizeP=file.getSize();
         String getname = file.getName();
         String filename = file.getOriginalFilename();
         String extension = filename.substring(filename.lastIndexOf(".") + 1);
+        String extensionname = filename.substring(0, filename.lastIndexOf("."));
 
         if (!file.isEmpty()) {
             try {
-
                 //=====THIS FOR COPY PICTURE ON BACK UP
                 //String Path_Directory ="../PicturesProducts";
                 //Files.copy(file.getInputStream(), Paths.get(Path_Directory+File.separator+file.getOriginalFilename()),StandardCopyOption.REPLACE_EXISTING);
                 //System.out.println("CopySucces");
-
                 if (extension.equals("jpg") || extension.equals("png") ||extension.equals("svg") ){
-
                         System.out.println("extension :"+extension);
-                        System.out.println("Picture upload successful.");
                         System.out.println("file.getOriginalFilename() : "+file.getOriginalFilename());
                         System.out.println("file.getName() :"+file.getName());
                         System.out.println("file.getContentType() :" +file.getContentType());
                         System.out.println("file.getsize() :"+file.getSize());
+                        System.out.println(extensionname);
 
+                        productpicture.setNamePicture(extensionname+"_"+sizeP);
                         productpicture.setPicture(fileContent);
                         productpicture.setSizePicture(sizeP);
 
                         return iProductPictureService.create(productpicture);
-                }else {
+                }
+                else {
                     System.out.println("this file is insuportable");
                     return null;
                 }
-
-
-
-
-
             } catch (Exception e) {
                 System.out.println("Failed to upload the picture.");
                 e.printStackTrace();
