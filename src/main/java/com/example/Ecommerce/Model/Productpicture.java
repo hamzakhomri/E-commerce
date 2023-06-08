@@ -14,6 +14,12 @@ public class Productpicture {
     private Long idProductpicture;
     @Lob
     private byte[] picture;
+
+
+
+    private Long sizePicture;
+
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idProduct")
     @JsonIgnore
@@ -37,6 +43,9 @@ public class Productpicture {
     public void setPicture(byte[] picture) {
         this.picture = picture;
     }
+    public Long getSizePicture() { return sizePicture;  }
+
+    public void setSizePicture(Long sizePicture) { this.sizePicture = sizePicture; }
 
 
 }
