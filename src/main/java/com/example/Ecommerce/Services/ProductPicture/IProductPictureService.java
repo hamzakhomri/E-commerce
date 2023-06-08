@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface IProductPictureService {
     List<Productpicture> GetAll();
-    Productpicture create(byte[] picture);
+    Productpicture create(Productpicture productpicture);
     Productpicture Update(Long idProductpicture,Productpicture productpicture);
     void deleteProductPicture(Long idProductpicture);
 }
