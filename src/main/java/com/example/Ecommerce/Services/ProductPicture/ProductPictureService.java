@@ -13,10 +13,7 @@ public class ProductPictureService implements IProductPictureService{
     ProductPictureRepository productPictureRepository;
 
     @Override
-    public Productpicture create(byte[] picture) {
-        Productpicture productpicture = new Productpicture();
-        productpicture.setPicture(picture);
-
+    public Productpicture create(Productpicture productpicture) {
 
         return productPictureRepository.save(productpicture);
     }
