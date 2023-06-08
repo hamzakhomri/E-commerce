@@ -9,7 +9,6 @@ import javax.persistence.*;
 public class Useradresse {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Long idUserAdresse;
     private String nameUserAdresse;
 
