@@ -10,6 +10,7 @@ import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.time.LocalDateTime;
+
 @Data
 @Entity
 @NoArgsConstructor
