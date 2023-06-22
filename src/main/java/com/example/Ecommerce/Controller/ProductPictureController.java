@@ -6,10 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -17,11 +14,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping("productpicture")
+@CrossOrigin("http://localhost:8081/Tester")
 public class ProductPictureController {
     @Autowired
     IProductPictureService iProductPictureService;
     @PostMapping()
-    public Productpicture create(Productpicture productpicture,@RequestParam("file") MultipartFile file) throws Exception
+    public Productpicture create(Productpicture productpicture, @RequestParam("file") MultipartFile file) throws Exception
     {
         byte[] fileContent = file.getBytes();
         Long sizeP=file.getSize();
@@ -38,7 +36,7 @@ public class ProductPictureController {
                 //String Path_Directory ="../PicturesProducts";
                 //Files.copy(file.getInputStream(), Paths.get(Path_Directory+File.separator+file.getOriginalFilename()),StandardCopyOption.REPLACE_EXISTING);
                 //System.out.println("CopySucces");
-                if (extension.equals("jpg") || extension.equals("png") ||extension.equals("svg") ){
+                if (extension.equals("jpg") || extension.equals("png") || extension.equals("svg") ){
                         System.out.println("extension :"+extension);
                         System.out.println("file.getOriginalFilename() : "+file.getOriginalFilename());
                         System.out.println("file.getName() :"+file.getName());
@@ -46,7 +44,7 @@ public class ProductPictureController {
                         System.out.println("file.getsize() :"+file.getSize());
                         System.out.println(extensionname);
 
-                        productpicture.setNamePicture(extensionname+"_"+sizeP);
+                        productpicture.setNamePicture(extensionname+"_"+sizeP+"KO");
                         productpicture.setPicture(fileContent);
                         productpicture.setSizePicture(sizeP);
                         productpicture.setCreatedatPicture(dateTime.format(formatter));
