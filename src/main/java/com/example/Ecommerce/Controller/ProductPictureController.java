@@ -65,7 +65,6 @@ public class ProductPictureController {
         return null;
     }
 
-
     @GetMapping()
     public List<Productpicture> getAll(){
         return iProductPictureService.GetAll();
