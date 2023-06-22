@@ -23,6 +23,4 @@ public class Useradresse {
     @JsonIgnore
     private Userr userr;
 
-
-
 }
