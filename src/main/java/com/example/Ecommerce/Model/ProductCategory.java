@@ -59,7 +59,6 @@ public class ProductCategory {
     public void setCreatedProductCategory(String createdProductCategory) {
         this.createdProductCategory = createdProductCategory;
     }
-
     public List<Product> getProducts(List<Product> products) {
         return this.products;
     }
