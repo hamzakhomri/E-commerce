@@ -21,7 +21,6 @@ public class Productpicture {
     private String namePicture;
     @CreatedDate()
     private String createdatPicture;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idProduct")
     @JsonIgnore
