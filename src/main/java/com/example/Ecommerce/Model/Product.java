@@ -39,61 +39,45 @@ public class Product {
     public Long getIdProducts() {
         return idProducts;
     }
-
     public void setIdProducts(Long idProducts) {
         this.idProducts = idProducts;
     }
-
     public String getNameProducts() {
         return nameProducts;
     }
-
     public void setNameProducts(String nameProducts) {
         this.nameProducts = nameProducts;
     }
-
     public String getCreatedatProduct() {
         return createdatProduct;
     }
-
     public void setCreatedatProduct(String createdatProduct) {
         this.createdatProduct = createdatProduct;
     }
-
     public String getModifiedatProduct() {
         return modifiedatProduct;
     }
-
     public void setModifiedatProduct(String modifiedatProduct) {
         this.modifiedatProduct = modifiedatProduct;
     }
-
-
     public Product(Long idProducts){
         this.idProducts=idProducts;
     }
-
     public ProductCategory getProductCategory() {
         return productCategory;
     }
     public List<Productpicture> getProductpictures() {
         return productpictures;
     }
-
     public void setProductCategory(ProductCategory productCategory) {
         this.productCategory = productCategory;
     }
-
-
     public void setProductpictures(List<Productpicture> productpictures) {
         this.productpictures = productpictures;
     }
-
     public Product get(Product product) {
         return product;
     }
 
-
-// °°°°°°°END GETTER AND SETTER °°°°°°°°°°°°°°°°°°°°°°°°°
-
+    // °°°°°°°END GETTER AND SETTER °°°°°°°°°°°°°°°°°°°°°°°°°
 }
