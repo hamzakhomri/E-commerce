@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface IProductPictureService {
     List<Productpicture> GetAll();
+    Productpicture findbyid(Long id);
     Productpicture create(Productpicture productpicture);
     Productpicture Update(Long idProductpicture,Productpicture productpicture);
     void deleteProductPicture(Long idProductpicture);
