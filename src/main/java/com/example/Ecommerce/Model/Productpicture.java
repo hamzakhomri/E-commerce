@@ -17,6 +17,8 @@ public class Productpicture {
     private Long idProductpicture;
     @Lob
     private byte[] picture;
+    private String path;
+
     private Long sizePicture;
     private String namePicture;
     @CreatedDate()
