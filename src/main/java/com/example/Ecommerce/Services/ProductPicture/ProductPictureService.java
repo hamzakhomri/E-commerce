@@ -46,4 +46,13 @@ public class ProductPictureService implements IProductPictureService{
         return productPictureRepository.findAll();
     }
 
+    /**
+     * @param id
+     * @return
+     */
+    @Override
+    public Productpicture findbyid(Long id) {
+       return productPictureRepository.findById(id).orElse(null);
+    }
+
 }
