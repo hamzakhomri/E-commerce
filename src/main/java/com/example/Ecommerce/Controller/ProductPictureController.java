@@ -37,12 +37,15 @@ public class ProductPictureController {
 
         if (!file.isEmpty()) {
             try {
+
+
                 //=====THIS FOR COPY PICTURE ON BACK UP
+
                 String Path_Directory ="PicturesProducts";
                 File directory = new File(Path_Directory);
                 if (!directory.exists())
                     directory.mkdir();
-                Path path = Paths.get(Path_Directory+ File.separator+file.getOriginalFilename());
+                Path path = Paths.get(Path_Directory +File.separator+dateTime.format(formatter) + "_name_" + file.getOriginalFilename());
                 Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
                 System.out.println("CopySucces");
 
