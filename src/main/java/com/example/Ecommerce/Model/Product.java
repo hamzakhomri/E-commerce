@@ -34,7 +34,6 @@ public class Product {
     @JsonIgnoreProperties("hibernateLazyInitializer")
     private List<Productpicture> productpictures=new ArrayList<>();
 
-
 //°°°°°°°°°°°GETTER AND SETTER °°°°°°°°°°°°°°°°°°°°°°°°°°
     public Long getIdProducts() {
         return idProducts;
