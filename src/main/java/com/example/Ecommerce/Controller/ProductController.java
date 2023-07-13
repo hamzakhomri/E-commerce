@@ -63,8 +63,11 @@ public class ProductController {
     public ResponseEntity<Product> createProduct(@RequestBody Product product, @PathVariable("idProductCategory") Long idProductCategory) {
         product.setCreatedatProduct(LocalDateTime.now().toString());
         product.setModifiedatProduct(LocalDateTime.now().toString());
+
+
         System.out.println("SAVE CATEGORY SUCCEFULLY");
         Product createdProduct = productService.createProduct(product, idProductCategory);
+        System.out.println("PRODUCT ID INSERTED IS : "+product.getIdProducts());
         return ResponseEntity.ok(createdProduct);
     }
     //======================== GET ====================================
