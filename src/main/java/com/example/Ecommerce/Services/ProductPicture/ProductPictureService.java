@@ -1,7 +1,9 @@
 package com.example.Ecommerce.Services.ProductPicture;
 
+import com.example.Ecommerce.Model.Product;
 import com.example.Ecommerce.Model.Productpicture;
 import com.example.Ecommerce.Repository.ProductPictureRepository;
+import com.example.Ecommerce.Repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,11 +13,15 @@ import java.util.List;
 public class ProductPictureService implements IProductPictureService{
     @Autowired
     ProductPictureRepository productPictureRepository;
+    @Autowired
+    ProductRepository productRepository;
 
     @Override
     public Productpicture create(Productpicture productpicture) {
 
-        return productPictureRepository.save(productpicture);
+
+            return productPictureRepository.save(productpicture);
+
     }
     @Override
     public Productpicture Update(Long idProductpicture, Productpicture productpicture) {
@@ -46,10 +52,6 @@ public class ProductPictureService implements IProductPictureService{
         return productPictureRepository.findAll();
     }
 
-    /**
-     * @param id
-     * @return
-     */
     @Override
     public Productpicture findbyid(Long id) {
        return productPictureRepository.findById(id).orElse(null);
