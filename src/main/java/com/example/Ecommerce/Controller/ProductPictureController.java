@@ -1,5 +1,7 @@
 package com.example.Ecommerce.Controller;
+import com.example.Ecommerce.Model.Product;
 import com.example.Ecommerce.Model.Productpicture;
+import com.example.Ecommerce.Repository.ProductRepository;
 import com.example.Ecommerce.Services.ProductPicture.IProductPictureService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -23,61 +25,63 @@ import java.util.List;
 public class ProductPictureController {
     @Autowired
     IProductPictureService iProductPictureService;
-    @PostMapping()
-    public Productpicture create(Productpicture productpicture, @RequestParam("file") MultipartFile file) throws Exception
-    {
-        byte[] fileContent = file.getBytes();
-        Long sizeP=file.getSize();
-        String getname = file.getName();
-        String filename = file.getOriginalFilename();
-        String extension = filename.substring(filename.lastIndexOf(".") + 1);
-        String extensionname = filename.substring(0, filename.lastIndexOf("."));
-        LocalDateTime dateTime = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");//("dd-MM-yyyy HH:mm:ss")
+    @Autowired
+    ProductRepository productRepository;
+    @PostMapping("/product/{idProducts}")
+    public Productpicture create(Productpicture productpicture, @PathVariable("idProducts") Long idProducts, @RequestParam("file") MultipartFile file) {
+        try {
+            String filename = file.getOriginalFilename();
+            String extension = filename.substring(filename.lastIndexOf(".") + 1);
+            String extensionname = filename.substring(0, filename.lastIndexOf("."));
+            LocalDateTime dateTime = LocalDateTime.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
-        if (!file.isEmpty()) {
-            try {
-
-
-                //=====THIS FOR COPY PICTURE ON BACK UP
-
-                String Path_Directory ="PicturesProducts";
-                File directory = new File(Path_Directory);
-                if (!directory.exists())
+            if (!file.isEmpty()) {
+                String pathDirectory = "PicturesProducts";
+                File directory = new File(pathDirectory);
+                if (!directory.exists()) {
                     directory.mkdir();
-                Path path = Paths.get(Path_Directory +File.separator+dateTime.format(formatter) + "_name_" + file.getOriginalFilename());
+                }
+                Path path = Paths.get(pathDirectory, dateTime.format(formatter) + "_name_" + filename);
                 Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
-                System.out.println("CopySucces");
+                System.out.println("Copy Success");
 
-                if (extension.equals("jpg") || extension.equals("png") || extension.equals("svg") ){
-                        System.out.println("extension :"+extension);
-                        System.out.println("file.getOriginalFilename() : "+file.getOriginalFilename());
-                        System.out.println("file.getName() :"+file.getName());
-                        System.out.println("file.getContentType() :" +file.getContentType());
-                        System.out.println("file.getsize() :"+file.getSize());
-                        System.out.println(extensionname);
+                if (extension.equals("jpg") || extension.equals("png") || extension.equals("svg")) {
+                    System.out.println("extension: " + extension);
+                    System.out.println("file.getOriginalFilename(): " + filename);
+                    System.out.println("file.getName(): " + file.getName());
+                    System.out.println("file.getContentType(): " + file.getContentType());
+                    System.out.println("file.getSize(): " + file.getSize());
+                    System.out.println(extensionname);
 
-                        productpicture.setNamePicture(extensionname+"_"+sizeP+"KO");
-                        productpicture.setPath(path.toString());
-                        //productpicture.setPicture(fileContent);
-                        productpicture.setSizePicture(sizeP);
-                        productpicture.setCreatedatPicture(dateTime.format(formatter));
+                    Product product = productRepository.findById(idProducts).orElse(null);
+                    if (product == null) {
+                        System.out.println("PRODUCT DOES NOT EXIST");
+                        return null;
+                    }
 
-                        return iProductPictureService.create(productpicture);
+                    productpicture.setNamePicture(extensionname + "_" + file.getSize() + "KO");
+                    productpicture.setPath(path.toString());
+                    productpicture.setSizePicture(file.getSize());
+                    productpicture.setCreatedatPicture(dateTime.format(formatter));
+                    productpicture.setProduct(product); // Assign the product object
+
+                    System.out.println("SAVE PICTURE SUCCESSFULLY");
+                    return iProductPictureService.create(productpicture);
+                } else {
+                    System.out.println("This file is unsupported.");
                 }
-                else {
-                    System.out.println("this file is insuportable");
-                    return null;
-                }
-            } catch (Exception e) {
-                System.out.println("Failed to upload the picture.");
-                e.printStackTrace();
+            } else {
+                System.out.println("No picture selected for upload.");
             }
-        } else {
-            System.out.println("No picture selected for upload.");
+        } catch (IOException e) {
+            System.out.println("Failed to upload the picture.");
+            e.printStackTrace();
         }
         return null;
     }
+
+
 
     @GetMapping()
     public List<Productpicture> getAll() {
