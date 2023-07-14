@@ -30,54 +30,61 @@ public class ProductPictureController {
     @PostMapping("/product/{idProducts}")
     public Productpicture create(Productpicture productpicture, @PathVariable("idProducts") Long idProducts, @RequestParam("file") MultipartFile file) {
         try {
-            String filename = file.getOriginalFilename();
-            String extension = filename.substring(filename.lastIndexOf(".") + 1);
-            String extensionname = filename.substring(0, filename.lastIndexOf("."));
-            LocalDateTime dateTime = LocalDateTime.now();
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+                String filename = file.getOriginalFilename();
+                String extension = filename.substring(filename.lastIndexOf(".") + 1);
+                String extensionname = filename.substring(0, filename.lastIndexOf("."));
+                LocalDateTime dateTime = LocalDateTime.now();
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
-            if (!file.isEmpty()) {
-                String pathDirectory = "PicturesProducts";
-                File directory = new File(pathDirectory);
-                if (!directory.exists()) {
-                    directory.mkdir();
-                }
-                Path path = Paths.get(pathDirectory, dateTime.format(formatter) + "_name_" + filename);
-                Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
-                System.out.println("Copy Success");
-
-                if (extension.equals("jpg") || extension.equals("png") || extension.equals("svg")) {
-                    System.out.println("extension: " + extension);
-                    System.out.println("file.getOriginalFilename(): " + filename);
-                    System.out.println("file.getName(): " + file.getName());
-                    System.out.println("file.getContentType(): " + file.getContentType());
-                    System.out.println("file.getSize(): " + file.getSize());
-                    System.out.println(extensionname);
-
-                    Product product = productRepository.findById(idProducts).orElse(null);
-                    if (product == null) {
-                        System.out.println("PRODUCT DOES NOT EXIST");
-                        return null;
+                if (!file.isEmpty())
+                {
+                    String pathDirectory = "PicturesProducts";
+                    File directory = new File(pathDirectory);
+                    if (!directory.exists())
+                    {
+                        directory.mkdir();
                     }
+                    Path path = Paths.get(pathDirectory, dateTime.format(formatter) + "_name_" + filename);
+                    Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
+                    System.out.println("Copy Success");
 
-                    productpicture.setNamePicture(extensionname + "_" + file.getSize() + "KO");
-                    productpicture.setPath(path.toString());
-                    productpicture.setSizePicture(file.getSize());
-                    productpicture.setCreatedatPicture(dateTime.format(formatter));
-                    productpicture.setProduct(product); // Assign the product object
+                    if (extension.equals("jpg") || extension.equals("png") || extension.equals("svg"))
+                    {
+                        Product product = productRepository.findById(idProducts).orElse(null);
+                            if (product == null) {
+                                System.out.println("PRODUCT DOES NOT EXIST");
+                                return null;
+                                }
+                            else {
+                                System.out.println("extension: " + extension);
+                                System.out.println("file.getOriginalFilename(): " + filename);
+                                System.out.println("file.getName(): " + file.getName());
+                                System.out.println("file.getContentType(): " + file.getContentType());
+                                System.out.println("file.getSize(): " + file.getSize());
+                                System.out.println(extensionname);
 
-                    System.out.println("SAVE PICTURE SUCCESSFULLY");
-                    return iProductPictureService.create(productpicture);
-                } else {
-                    System.out.println("This file is unsupported.");
+                                productpicture.setNamePicture(extensionname + "_" + file.getSize() + "KO");
+                                productpicture.setPath(path.toString());
+                                productpicture.setSizePicture(file.getSize());
+                                productpicture.setCreatedatPicture(dateTime.format(formatter));
+                                productpicture.setProduct(product); // Assign the product object
+
+                                System.out.println("SAVE PICTURE SUCCESSFULLY");
+                                return iProductPictureService.create(productpicture);
+                            }
+                    }
+                    else {
+                        System.out.println("This file is unsupported.");
+                    }
                 }
-            } else {
-                System.out.println("No picture selected for upload.");
+                else {
+                    System.out.println("No picture selected for upload.");
+                }
             }
-        } catch (IOException e) {
-            System.out.println("Failed to upload the picture.");
-            e.printStackTrace();
-        }
+            catch (IOException e) {
+                System.out.println("Failed to upload the picture.");
+                e.printStackTrace();
+            }
         return null;
     }
 
