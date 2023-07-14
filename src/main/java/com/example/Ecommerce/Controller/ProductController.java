@@ -52,7 +52,6 @@ public class ProductController {
         }
         return  productCategories;
     }
-
     @PutMapping("/{idProducts}/picture/{idProductpicture}")
     public ResponseEntity<Void> assign2(@PathVariable Long idProducts,@PathVariable Long idProductpicture){
         productService.assignToProductPicture(idProducts,idProductpicture);
