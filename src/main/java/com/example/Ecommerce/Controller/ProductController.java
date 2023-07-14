@@ -57,7 +57,6 @@ public class ProductController {
         productService.assignToProductPicture(idProducts,idProductpicture);
         return ResponseEntity.ok().build();
     }
-
     @PostMapping("/category/{idProductCategory}")
     public ResponseEntity<Product> createProduct(@RequestBody Product product, @PathVariable("idProductCategory") Long idProductCategory) {
         product.setCreatedatProduct(LocalDateTime.now().toString());
