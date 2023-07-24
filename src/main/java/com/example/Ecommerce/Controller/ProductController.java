@@ -9,6 +9,7 @@ import com.example.Ecommerce.Repository.ProductRepository;
 import com.example.Ecommerce.Services.Product.IProductService;
 import com.example.Ecommerce.Services.Product.ProductService;
 import com.example.Ecommerce.Services.ProductCartegory.ProductCategoryService;
+import com.example.Ecommerce.Services.ProductPicture.IProductPictureService;
 import com.example.Ecommerce.Services.ProductPicture.ProductPictureService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -75,6 +76,7 @@ public class ProductController {
         Product product = iProductService.GetById(idProducts);
         return ResponseEntity.ok(product);
     }
+
 
     @GetMapping("/filterbyname")
     public List<Optional<Product>>GetProductBynameProducts( String nameProducts){
