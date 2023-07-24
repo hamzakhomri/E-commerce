@@ -44,20 +44,6 @@ public class ProductService implements IProductService{
         }
     }
 
-    @Override
-    public long countByIdProducts(Long idProducts) {
-        Long product = productRepository.countByIdProducts(idProducts);
-        if (product == null) {
-            System.out.println("idProducts Don't Exist");
-            return 0;
-        } else {
-            System.out.println("you have : "+product+" Pictures" );
-            return product;
-        }
-    }
-
-
-
     public void assignToProductCtegory(Product product, Long idProductCategory) {
         ProductCategory productCategory = productCategoryRepository.findById(idProductCategory).orElse(null);
 
