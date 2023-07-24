@@ -42,6 +42,19 @@ public class ProductPictureService implements IProductPictureService{
     }
 
     @Override
+    public long countByProduct_IdProducts(Long idProducts) {
+        Long productpicture = productPictureRepository.countByProduct_IdProducts(idProducts);
+        if (productpicture == null) {
+            System.out.println("This Products don't existed");
+            return 0;
+            }
+        else {
+            System.out.println(productpicture+" Pictures from idProduct : "+idProducts);
+            return productpicture;
+        }
+    }
+
+    @Override
     public List<Productpicture> GetAll() {
         return productPictureRepository.findAll();
     }
