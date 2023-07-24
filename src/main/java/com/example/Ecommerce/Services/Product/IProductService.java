@@ -8,8 +8,7 @@ import java.util.Optional;
 public interface IProductService {
     void assignToProductPicture(Long idProducts, Long idProductpicture);
     //Productpicture assign2(Long idProducts, Long idProductpicture);
-
-
+    long countByIdProducts(Long idProducts);
 
     void assignToProductCtegory(Product product , Long idProductCategory);
 
