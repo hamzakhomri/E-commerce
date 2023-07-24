@@ -38,7 +38,6 @@ public class ProductController {
     @Autowired
     private ProductPictureService productPictureService;
 
-
     @GetMapping("/categorieswithproductsandpictures")
     public List<ProductCategory> getCategoryAndPictureWithProduct() {
         ProductCategory oldproductCategory= (ProductCategory) productCategoryRepository.findAll();
@@ -53,12 +52,6 @@ public class ProductController {
         }
         return  productCategories;
     }
-
-    @GetMapping("/countpictures/{idProducts}")
-    public long countByIdProducts(@PathVariable("idProducts") Long idProducts){
-        return productService.countByIdProducts(idProducts);
-    }
-
     @PutMapping("/{idProducts}/picture/{idProductpicture}")
     public ResponseEntity<Void> assign2(@PathVariable Long idProducts,@PathVariable Long idProductpicture){
         productService.assignToProductPicture(idProducts,idProductpicture);
