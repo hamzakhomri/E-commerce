@@ -1,6 +1,7 @@
 package com.example.Ecommerce.Controller;
 import com.example.Ecommerce.Model.Product;
 import com.example.Ecommerce.Model.Productpicture;
+import com.example.Ecommerce.Repository.ProductPictureRepository;
 import com.example.Ecommerce.Repository.ProductRepository;
 import com.example.Ecommerce.Services.ProductPicture.IProductPictureService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -103,6 +104,14 @@ public class ProductPictureController {
 
         return ResponseEntity.ok(img);
     }
+
+
+    @GetMapping("CountPictures/{idProducts}")
+    public long countByProduct_IdProducts (@PathVariable Long idProducts){
+       Long productpicture = iProductPictureService.countByProduct_IdProducts(idProducts);
+       return productpicture;
+    }
+
     @PutMapping("/{idProductpicture}")
     public Productpicture update(@PathVariable Long idProductpicture,@RequestBody Productpicture productpicture){
         Productpicture updateproductpicture=iProductPictureService.Update(idProductpicture,productpicture);
