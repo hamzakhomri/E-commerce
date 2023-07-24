@@ -10,12 +10,14 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
     boolean existsByProductCategory_IdProductCategory(Long idProductCategory);
     boolean existsByProductpictures_IdProductpicture(Long idProductpicture);
 
+    long countByIdProducts(Long idProducts);
+
+
     //=================  END FIND TO ASIGNING =================================
+
     boolean existsByIdProducts(Long idProducts);
     List<Optional<Product>> findByNameProductsStartsWith(String nameProducts);
     List<Optional<Product>> findByCreatedatProduct(String createdatProduct);
     List<Optional<Product>> findByProductCategory_NameProductCategoryStartsWith(String nameProductCategory);
-
-
 
 }
