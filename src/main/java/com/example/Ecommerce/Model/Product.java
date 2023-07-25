@@ -8,6 +8,7 @@ import org.springframework.data.annotation.CreatedDate;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+
 @Data
 @Entity
 @DynamicUpdate
