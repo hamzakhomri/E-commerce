@@ -16,7 +16,6 @@ public class Productpicture {
     private Long idProductpicture;
 
     private String path;
-
     private Long sizePicture;
     private String namePicture;
     @CreatedDate()
