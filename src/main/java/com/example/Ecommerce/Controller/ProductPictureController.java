@@ -19,7 +19,6 @@ import java.nio.file.StandardCopyOption;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-
 @RestController
 @RequestMapping("productpicture")
 @CrossOrigin("http://localhost:8081/Tester")
