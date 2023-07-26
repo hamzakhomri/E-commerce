@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductPictureService implements IProductPictureService{
@@ -52,6 +53,11 @@ public class ProductPictureService implements IProductPictureService{
             System.out.println(productpicture+" Pictures from idProduct : "+idProducts);
             return productpicture;
         }
+    }
+
+    @Override
+    public List<Productpicture> findByProduct_IdProducts(Long idProducts) {
+            return productPictureRepository.findByProduct_IdProducts(idProducts);
     }
 
     @Override
