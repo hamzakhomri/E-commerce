@@ -14,6 +14,12 @@ public class ProductPictureService implements IProductPictureService{
     ProductPictureRepository productPictureRepository;
 
     @Override
+    public List<Optional<Productpicture>> findByProduct_IdProducts(Long idProducts)
+    {
+        return productPictureRepository.findByProduct_IdProducts(idProducts);
+    }
+
+    @Override
     public Productpicture create(Productpicture productpicture) {
             return productPictureRepository.save(productpicture);
     }
@@ -55,10 +61,7 @@ public class ProductPictureService implements IProductPictureService{
         }
     }
 
-    @Override
-    public List<Productpicture> findByProduct_IdProducts(Long idProducts) {
-            return productPictureRepository.findByProduct_IdProducts(idProducts);
-    }
+
 
     @Override
     public List<Productpicture> GetAll() {
