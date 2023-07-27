@@ -6,10 +6,9 @@ import java.util.List;
 import java.util.Optional;
 
 public interface IProductPictureService {
+    List <Optional<Productpicture>>findByProduct_IdProducts(Long idProducts);
 
     long countByProduct_IdProducts(Long idProducts);
-    List <Productpicture> findByProduct_IdProducts(Long idProducts);
-
     List<Productpicture> GetAll();
     Productpicture findbyid(Long id);
     Productpicture create(Productpicture productpicture);
