@@ -49,6 +49,11 @@ public class ProductPictureService implements IProductPictureService{
     }
 
     @Override
+    public Optional<Productpicture> getProductpictureById(Long idProductpicture) {
+        return productPictureRepository.findById(idProductpicture);
+    }
+
+    @Override
     public long countByProduct_IdProducts(Long idProducts) {
         Long productpicture = productPictureRepository.countByProduct_IdProducts(idProducts);
         if (productpicture == null) {
