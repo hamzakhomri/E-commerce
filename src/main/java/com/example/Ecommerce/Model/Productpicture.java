@@ -15,6 +15,14 @@ public class Productpicture {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idProductpicture;
 
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
     private String path;
     private Long sizePicture;
     private String namePicture;
