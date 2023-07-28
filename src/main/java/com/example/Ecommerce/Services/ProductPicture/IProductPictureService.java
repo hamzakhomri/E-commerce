@@ -14,4 +14,6 @@ public interface IProductPictureService {
     Productpicture create(Productpicture productpicture);
     Productpicture Update(Long idProductpicture,Productpicture productpicture);
     void deleteProductPicture(Long idProductpicture);
+
+    Optional<Productpicture> getProductpictureById(Long idProductpicture);
 }
