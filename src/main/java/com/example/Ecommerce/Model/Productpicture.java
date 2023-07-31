@@ -7,6 +7,7 @@ import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 
+
 @Data
 @Entity
 @NoArgsConstructor
